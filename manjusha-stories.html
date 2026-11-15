@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manjusha Stories — Case study · Adya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/case.css">
+<script>document.documentElement.classList.add("js")</script>
+
+<style>
+:root{--acc:#93001B;--accSoft:#F6DCD6;--heroBg:#5C0F1A;--heroAcc:#D7AB52;
+  --sindoor:#93001B;--oxblood:#5C0F1A;--ivory:#FFF8EF;--parch:#FAF3E8;--ochre:#D7AB52;--forest:#33503A;--brandInk:#1E1B15;--play:"Playfair Display",Georgia,serif}
+[data-theme="dark"]{--acc:#E0A64A;--accSoft:#3A2418}
+.hero h1{font-family:var(--play)}.hero h1 em{font-style:italic}
+.hero .pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.13}
+.hero .pattern path{fill:none;stroke:var(--ochre);stroke-width:1.4}
+.hero .drift{animation:drift 40s linear infinite}
+@keyframes drift{to{transform:translateX(-200px)}}
+.laptop{position:absolute;left:50%;top:0;width:min(78%,900px);transform:translateX(-50%) rotateX(8deg);transform-origin:bottom center;transition:transform 1s cubic-bezier(.2,.9,.3,1)}
+.hero-visual:hover .laptop{transform:translateX(-50%) rotateX(0) translateY(-10px)}
+.laptop .lid{background:#16100E;border-radius:18px 18px 4px 4px;padding:12px 12px 16px;box-shadow:0 60px 120px -40px rgba(0,0,0,.7)}
+.laptop .lid img{border-radius:6px;width:100%}
+.laptop .base{height:16px;margin:0 -6%;background:linear-gradient(#d8cfc6,#a99f96);border-radius:0 0 22px 22px}
+.float{position:absolute;border-radius:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);overflow:hidden;background:var(--ivory);transition:transform .8s cubic-bezier(.2,.9,.3,1)}
+.f-card{width:clamp(110px,14vw,190px);left:3%;bottom:8%;transform:rotate(-6deg)}
+.f-tag{right:3%;top:16%;padding:14px 16px;color:var(--brandInk);width:clamp(140px,16vw,220px);transform:rotate(5deg)}
+.f-tag small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sindoor);margin-bottom:6px}
+.f-tag b{font-family:var(--play);font-weight:400;font-size:clamp(15px,1.5vw,20px);line-height:1.15;display:block}
+.hero-visual:hover .f-card{transform:rotate(-2deg) translateY(-14px)}
+.hero-visual:hover .f-tag{transform:rotate(1deg) translateY(-10px)}
+.ph h2,.quote,.tile h4{font-family:var(--play)}
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.rule{border-radius:18px;padding:18px;background:var(--card);transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.rule:hover{transform:translateY(-6px)}
+.rule svg{width:100%;height:90px;display:block;margin-bottom:12px}
+.rule .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.rule h4{font-family:var(--play);font-weight:400;font-size:22px;margin:4px 0 6px}
+.rule p{font-size:14px;line-height:1.45;margin:0 0 10px;color:var(--muted)}
+.rule p:not(.to){display:none}
+.rule .to{font-size:14px;padding-top:10px;border-top:1px solid var(--line);margin:0;color:var(--ink);display:block}
+.borders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 32px}
+.border{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line)}
+.border b{font-family:var(--play);font-weight:400;font-size:19px;display:block;line-height:1.05}
+.border small{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.border svg{width:100%;height:44px;overflow:visible}
+.border svg *{fill:none;stroke:var(--sindoor);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.45,0,.2,1)}
+[data-theme="dark"] .border svg *{stroke:var(--ochre)}
+.border.in svg *{stroke-dashoffset:0}
+.motifs{display:flex;flex-direction:column;gap:12px}
+.motif,.mhead{display:grid;grid-template-columns:150px 1fr 1fr 1.3fr;gap:12px;align-items:stretch}
+.mhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.motif .name{display:flex;flex-direction:column;justify-content:center}
+.motif .name b{font-family:var(--play);font-weight:400;font-size:22px;line-height:1.05}
+.motif .name small{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.mbox{position:relative;border-radius:14px;background:var(--parch);min-height:118px;display:grid;place-items:center;overflow:hidden}
+[data-theme="dark"] .mbox{background:#211917}
+.mbox .lbl{position:absolute;left:10px;top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mbox svg{width:70%;height:76px;overflow:visible}
+.mbox svg *{fill:none;stroke:var(--sindoor);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.45,0,.2,1)}
+.mbox.abs svg *{stroke:var(--brandInk)}
+[data-theme="dark"] .mbox svg *{stroke:var(--ochre)}[data-theme="dark"] .mbox.abs svg *{stroke:var(--ink)}
+.motif.in .mbox svg *{stroke-dashoffset:0}.motif.in .mbox.abs svg *{transition-delay:.8s}
+.mbox.photo{display:block}
+.mbox.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.9,.3,1)}
+.motif:hover .mbox.photo img{transform:scale(1.06)}
+.mbox.photo .lbl{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5);z-index:1}
+.mbox.photo .pname{position:absolute;left:10px;bottom:8px;z-index:1;color:#fff;font-size:13px;font-weight:500;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.iters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.iter .tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:999px;background:var(--card);margin:12px 0 6px}
+.iter.final .tag{background:var(--sindoor);color:#fff}
+.iter p{margin:0;font-size:14px;line-height:1.45;color:var(--muted)}
+.iter .zoom{aspect-ratio:16/10}.iter .zoom img{height:100%;object-fit:cover;object-position:top}
+.journey{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.journey span{padding:10px 14px;border-radius:12px;background:var(--card);font-size:14px}
+.journey span b{display:block;font-size:15px}
+.journey em{font-style:normal;color:var(--acc)}
+.pal .sw{min-height:84px}
+@media (max-width:1000px){.rules{grid-template-columns:repeat(2,minmax(0,1fr))}.borders{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.motif,.mhead{grid-template-columns:1fr 1fr}.mhead{display:none}.motif .name{grid-column:1/-1}.motif .mbox.photo{grid-column:1/-1;min-height:180px}.borders{grid-template-columns:1fr}.iters{grid-template-columns:1fr}.f-tag{display:none}}
+@media (prefers-reduced-motion:reduce){.border svg *,.mbox svg *{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><i></i>Adya</a>
+    <nav class="links" aria-label="Main">
+      <a class="br" href="index.html#work"><span class="b">[</span>← All work<span class="b">]</span></a>
+      <a class="br hide-sm" href="index.html#about"><span class="b">[</span>About<span class="b">]</span></a>
+      <button class="tog" id="tog" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="k" aria-hidden="true">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<header class="hero">
+  <svg class="pattern bgfx" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="drift" id="coverWaves"></g></svg>
+  <div class="wrap">
+    <p class="eyebrow">Case study 01 · IDS project · Brand + e-commerce</p>
+    <h1>Manjusha <em>Stories</em></h1>
+    <p class="lede">Turning a 7th-century folk art from Bihar into a brand, a product range and a story-led online store.</p>
+  </div>
+  <div class="hero-visual">
+    <div class="laptop"><div class="lid"><img src="images/manjusha/final-hero.jpg" alt="Final homepage shown on a laptop" width="1280" height="800"></div><div class="base"></div></div>
+    <div class="float f-card"><img src="images/manjusha/ui-card.jpg" alt="Product card from the objects listing"></div>
+    <div class="float f-tag"><small>Motif lineage</small><b>Sarp Ladi, the serpentine wave</b></div>
+  </div>
+</header>
+
+<section class="overview">
+  <div class="wrap">
+    <dl class="meta">
+      <div><dt>Role</dt><dd>Research, brand &amp; UX/UI design</dd></div>
+      <div><dt>Context</dt><dd>IDS project, 2026</dd></div>
+      <div><dt>Deliverables</dt><dd>Brand system · 18 products · website</dd></div>
+      <div><dt>Tools</dt><dd>Figma, Keynote, AI mock-ups</dd></div>
+    </dl>
+    <div class="tldr">
+      <div><p class="k">Problem</p><p>Online, buyers <b>can't see the story</b> behind Manjusha products, so a meaningful folk art gets sold as a <b>cheap souvenir</b>.</p></div>
+      <div style="--c:#B8862B"><p class="k">Solution</p><p>A brand built on the art's <b>4 visual rules</b>, and a store where <b>the story sits next to the price</b>.</p></div>
+      <div style="--c:#33503A"><p class="k">Outcome</p><p>A brand system, <b>18 products in 5 collections</b>, and a website refined over <b>3 rounds</b>.</p></div>
+    </div>
+    <p class="sub-h">My process · click a stage to jump to it</p>
+    <div class="process" aria-label="My process"><button type="button" data-start="0"><small>01 · Empathise</small><b>Problem</b><span>A story sold as a souvenir</span></button><button type="button" data-start="1"><small>02 · Research</small><b>Research</b><span>Methods, personas, empathy map, 4 rules</span></button><button type="button" data-start="2"><small>03 · Define</small><b>Strategy</b><span>Journey map, motif system, collections</span></button><button type="button" data-start="3"><small>04 · Ideate</small><b>Design</b><span>Palette, type, 3 design rounds</span></button><button type="button" data-start="4"><small>05 · Prototype</small><b>Solution</b><span>User flow + clickable store</span></button><button type="button" data-start="5"><small>06 · Test</small><b>Test & outcome</b><span>Test plan, results, learnings</span></button></div>
+    <div class="pfiles"><a href="figma-source/manjusha/research.html" target="_blank" rel="noopener">Full research board ↗</a><a class="fig" href="https://www.figma.com/design/S78MfCis4Sqc5ntNYsYcMW/Portfolio" target="_blank" rel="noopener">Open Figma file ↗</a></div>
+  </div>
+</section>
+
+<div class="stepper-wrap">
+  <div class="wrap">
+    <div class="stepper" role="tablist" aria-label="Case study steps">
+      <button type="button" role="tab" data-go data-title="Problem"><i>01</i><span>Problem</span></button>
+      <button type="button" role="tab" data-go data-title="Research"><i>02</i><span>Research</span></button>
+      <button type="button" role="tab" data-go data-title="Strategy"><i>03</i><span>Strategy</span></button>
+      <button type="button" role="tab" data-go data-title="Design"><i>04</i><span>Design</span></button>
+      <button type="button" role="tab" data-go data-title="Prototype"><i>05</i><span>Solution &amp; prototype</span></button>
+      <button type="button" role="tab" data-go data-title="Test &amp; outcome"><i>06</i><span>Test &amp; outcome</span></button>
+    </div>
+  </div>
+  <div class="sbar"><i></i></div>
+</div>
+
+<main class="panels">
+  <div class="wrap">
+
+  <!-- 01 -->
+  <section class="panel" data-step="1" aria-label="Step 1: Problem">
+    <div class="ph"><span class="n">01 / 06</span><h2>A story, sold as <em>a souvenir</em>.</h2></div>
+    <div class="pstate"><span>Problem statement</span>Online, <b>buyers can't see the story behind Manjusha products</b>, so a meaningful folk art gets sold as a cheap souvenir.</div>
+    <div class="split">
+      <div>
+        <p class="quote">Every Manjusha painting tells <em>one story</em>: Bihula, who braves the snake goddess to save her husband.</p>
+        <ul class="pts">
+          <li>Folk art from Bhagalpur, Bihar, with a <b>GI tag since 2021</b>.</li>
+          <li>Mostly seen as wall paintings, festival boxes or <b>souvenirs</b>.</li>
+          <li>Online, it's a grid of products. <b>The meaning disappears.</b></li>
+        </ul>
+        <div class="callout"><span>How might we</span>turn a ritual folk art into everyday objects, and sell them online, without stripping away their meaning?</div>
+      </div>
+      <div><button class="zoom" type="button"><img src="images/manjusha/scroll.jpg" alt="A long Manjusha scroll painting"></button><p class="cap">Manjusha as narrative scroll art (reference image).</p></div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="panel" data-step="2" aria-label="Step 2: Research">
+    <div class="ph"><span class="n">02 / 06</span><h2>Who buys it, and <em>what the art demands</em>.</h2></div>
+    <p class="sub-h" style="margin-top:0">How I researched</p><div class="methods"><div class="method"><i>01</i><b>Secondary research</b><span>History, the Bihula legend and its 2021 GI tag.</span></div><div class="method"><i>02</i><b>Visual analysis</b><span>Traditional paintings and borders, decoded into 4 rules.</span></div><div class="method"><i>03</i><b>Moodboard</b><span>Motifs, earth pigments and hand-painted objects.</span></div><div class="method"><i>04</i><b>Proto-personas</b><span>2 buyer types, to focus the brand and the store.</span></div></div><p class="sub-h">Who I'm designing for</p><div class="pgrid"><div class="pcard"><div class="who"><span class="av" style="background:#93001B">M</span><div><b>Meera, 28 · Gift buyer</b><span>Marketing professional, Bengaluru</span></div><span class="tag">Proto-persona</span></div><q>I want a gift that means something, not another souvenir.</q><div class="cols"><div><h5>Goals</h5><ul><li>Find unique handmade gifts with a story</li><li>Trust that the craft is authentic</li></ul></div><div><h5>Frustrations</h5><ul><li>Listings show a photo and a price, nothing more</li><li>Can't tell real craft from mass-made copies</li></ul></div></div><div class="need"><b>Needs</b>The story and origin next to the price, and gift-ready packaging.</div></div><div class="pcard"><div class="who"><span class="av" style="background:#33503A">K</span><div><b>Kabir, 34 · Home-decor lover</b><span>Architect, Mumbai</span></div><span class="tag">Proto-persona</span></div><q>I love folk art, but I don't want my home to look like a museum shop.</q><div class="cols"><div><h5>Goals</h5><ul><li>Modern everyday objects with cultural depth</li><li>Good materials and finish</li></ul></div><div><h5>Frustrations</h5><ul><li>Folk art is mostly wall paintings or kitsch</li><li>Quality is inconsistent</li></ul></div></div><div class="need"><b>Needs</b>Contemporary products, with clear material and craft details.</div></div></div><p class="cap">Proto-personas: built from my desk research and context, not interviews yet. Next step: validate them with 5 user interviews.</p><p class="sub-h">Empathy map · Meera, gift buyer</p><div class="empathy"><div><h5>Says</h5><p>"Is this really handmade? What does the design mean?"</p></div><div><h5>Thinks</h5><p>"I don't want to gift something generic that ends up in a drawer."</p></div><div><h5>Does</h5><p>Browses Amazon and Instagram, compares prices, reads reviews, then often settles for a safe option.</p></div><div><h5>Feels</h5><p>Unsure about authenticity. Delighted when a gift comes with a story she can tell.</p></div><span class="mid">M</span></div><p class="sub-h">Research synthesis · affinity map</p><div class="affinity"><div class="col"><h5>Meaning gets lost</h5><div class="sticky">Listings show only a photo and a price<small>desk research</small></div><div class="sticky">The Bihula story is rarely told<small>desk research</small></div><div class="sticky">Each motif has a meaning buyers don't know<small>visual analysis</small></div><div class="ins"><b>Insight</b>Without the story, it's just a pattern.</div></div><div class="col"><h5>Trust & authenticity</h5><div class="sticky">GI-tagged since 2021<small>GI registry</small></div><div class="sticky">Hard to tell handmade from printed online<small>desk research</small></div><div class="sticky">Artisans are rarely credited<small>desk research</small></div><div class="ins"><b>Insight</b>Buyers need proof of origin.</div></div><div class="col"><h5>Product fit</h5><div class="sticky">Mostly wall paintings and festival boxes<small>desk research</small></div><div class="sticky">Few everyday, useful objects</div><div class="sticky">Modern homes prefer minimal pieces<small>moodboard</small></div><div class="ins"><b>Insight</b>Translate the art into daily objects.</div></div><div class="col"><h5>Rules of the art</h5><div class="sticky">Bold outlines, flat colour<small>visual analysis</small></div><div class="sticky">Only a few colours: red, yellow, green<small>visual analysis</small></div><div class="sticky">Borders frame every story<small>visual analysis</small></div><div class="ins"><b>Insight</b>The rules can become a brand system.</div></div></div><p class="cap">Sticky notes from my secondary research, visual analysis and audit, grouped into themes (affinity mapping). Interviews will add direct user quotes.</p>
+<p class="sub-h">What I found: 4 visual rules</p><p class="lead">Manjusha follows four strict rules, and <b>each became a brand rule</b>.</p>
+    <div class="rules">
+      <div class="rule">
+        <svg viewBox="0 0 200 120" aria-hidden="true"><g fill="none" stroke="var(--brandInk)" stroke-width="4" stroke-linecap="round"><path d="M30 90 Q60 20 100 60 T170 40"/></g><circle cx="170" cy="40" r="7" fill="var(--sindoor)"/></svg>
+        <span class="n">01</span><h4>Bold line</h4><p>Strong outlines, simplified characters.</p><p class="to">→ A clear, line-based graphic style</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 200 120" aria-hidden="true"><g fill="none" stroke="var(--sindoor)" stroke-width="3" stroke-linecap="round"><path d="M100 95 C70 80 70 40 100 22 C130 40 130 80 100 95Z"/><path d="M100 95 C78 92 58 72 54 50 C76 54 92 70 100 95Z"/><path d="M100 95 C122 92 142 72 146 50 C124 54 108 70 100 95Z"/></g></svg>
+        <span class="n">02</span><h4>Symbolic motifs</h4><p>A visual dictionary: snake, lotus, fish, bird, boat.</p><p class="to">→ A motif library for products</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 200 120" aria-hidden="true"><circle cx="50" cy="60" r="24" fill="var(--sindoor)"/><circle cx="90" cy="60" r="24" fill="var(--ochre)"/><circle cx="130" cy="60" r="24" fill="var(--forest)"/><circle cx="168" cy="60" r="16" fill="var(--brandInk)"/></svg>
+        <span class="n">03</span><h4>Restricted palette</h4><p>A disciplined use of a few colours.</p><p class="to">→ Four brand colours from the paintings</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 200 120" aria-hidden="true"><g fill="none" stroke="var(--brandInk)" stroke-width="2.5"><rect x="20" y="20" width="160" height="80" rx="4"/><path d="M73 20V100M127 20V100"/></g><g fill="none" stroke="var(--sindoor)" stroke-width="2.5"><path d="M20 30 L30 20 L40 30 L50 20 L60 30 L70 20"/></g></svg>
+        <span class="n">04</span><h4>Narrative composition</h4><p>Scenes in sequence, framed by borders.</p><p class="to">→ Story-led page sections</p>
+      </div>
+    </div>
+    <p class="sub-h">Six traditional borders, redrawn as vectors</p>
+    <div class="borders">
+      <div class="border"><div><b>Lahariya</b><small>waves</small></div><svg viewBox="0 0 400 56" aria-hidden="true"><path pathLength="1" d="M0 28 Q25 6 50 28 T100 28 T150 28 T200 28 T250 28 T300 28 T350 28 T400 28"/><path pathLength="1" d="M0 44 Q25 22 50 44 T100 44 T150 44 T200 44 T250 44 T300 44 T350 44 T400 44"/></svg></div>
+      <div class="border"><div><b>Belpatra</b><small>sacred leaf</small></div><svg viewBox="0 0 400 56" aria-hidden="true"><path pathLength="1" d="M0 46 H400"/><path pathLength="1" d="M20 46 Q10 22 28 8 Q38 26 20 46 M60 46 Q50 22 68 8 Q78 26 60 46 M100 46 Q90 22 108 8 Q118 26 100 46 M140 46 Q130 22 148 8 Q158 26 140 46 M180 46 Q170 22 188 8 Q198 26 180 46 M220 46 Q210 22 228 8 Q238 26 220 46 M260 46 Q250 22 268 8 Q278 26 260 46 M300 46 Q290 22 308 8 Q318 26 300 46 M340 46 Q330 22 348 8 Q358 26 340 46 M380 46 Q370 22 388 8 Q398 26 380 46"/></svg></div>
+      <div class="border"><div><b>Tribhuj</b><small>triangles</small></div><svg viewBox="0 0 400 56" aria-hidden="true"><path pathLength="1" d="M0 48 L20 10 L40 48 L60 10 L80 48 L100 10 L120 48 L140 10 L160 48 L180 10 L200 48 L220 10 L240 48 L260 10 L280 48 L300 10 L320 48 L340 10 L360 48 L380 10 L400 48"/><path pathLength="1" d="M0 52 H400"/></svg></div>
+      <div class="border"><div><b>Sarp ki Ladi</b><small>chain of snakes</small></div><svg viewBox="0 0 400 56" aria-hidden="true"><path pathLength="1" d="M0 28 C20 4 40 4 50 28 S80 52 100 28 S130 4 150 28 S180 52 200 28 S230 4 250 28 S280 52 300 28 S330 4 350 28 S380 52 400 28"/><path pathLength="1" d="M0 28 C20 52 40 52 50 28 S80 4 100 28 S130 52 150 28 S180 4 200 28 S230 52 250 28 S280 4 300 28 S330 52 350 28 S380 4 400 28"/></svg></div>
+      <div class="border"><div><b>Mokha I</b><small>diagonal bands</small></div><svg viewBox="0 0 400 56" aria-hidden="true"><path pathLength="1" d="M0 8 H400 M0 48 H400"/><path pathLength="1" d="M10 48 L40 8 M60 48 L90 8 M110 48 L140 8 M160 48 L190 8 M210 48 L240 8 M260 48 L290 8 M310 48 L340 8 M360 48 L390 8"/></svg></div>
+      <div class="border"><div><b>Mokha II</b><small>paired bands</small></div><svg viewBox="0 0 400 56" aria-hidden="true"><path pathLength="1" d="M0 8 H400 M0 48 H400"/><path pathLength="1" d="M20 48 L44 8 M32 48 L56 8 M100 48 L124 8 M112 48 L136 8 M180 48 L204 8 M192 48 L216 8 M260 48 L284 8 M272 48 L296 8 M340 48 L364 8 M352 48 L376 8"/></svg></div>
+    </div>
+    <div class="grid2" style="margin-top:28px">
+      <div><button class="zoom" type="button"><img src="images/manjusha/moodboard.jpg" alt="Manjusha moodboard" loading="lazy"></button><p class="cap">Moodboard: motifs, earth pigments, hand-painted boxes.</p></div>
+      <div><button class="zoom" type="button" style="aspect-ratio:4/3"><img src="images/manjusha/research-borders.jpg" alt="Research board with paintings, palette and border types" loading="lazy" style="height:100%;object-fit:cover;object-position:top"></button><p class="cap">Research board. Border references: manjushakala.in</p></div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="panel" data-step="3" aria-label="Step 3: Strategy">
+    <div class="ph"><span class="n">03 / 06</span><h2>Not copied. <em>Decoded.</em></h2></div>
+<p class="sub-h">Current journey · buying a folk-art gift online</p><div class="jmap"><div class="jr"><div>Stage</div><div class="st">Search</div><div class="st">Browse</div><div class="st">Evaluate</div><div class="st">Buy</div><div class="st">Gift</div></div><div class="jr"><div>Doing</div><div class="">Searches "Manjusha gift"</div><div class="">Scrolls mixed listings and prints</div><div class="">Checks photos, price, reviews</div><div class="">Pays on a marketplace</div><div class="">Hands it over</div></div><div class="jr"><div>Feeling</div><div class="emo" style="grid-column:2/-1"><svg viewBox="0 0 500 64" preserveAspectRatio="none"><polyline points="50,24 150,38 250,52 350,24 450,38" fill="none" stroke="var(--acc)" stroke-width="2.5" vector-effect="non-scaling-stroke"/><circle cx="50" cy="24" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="150" cy="38" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="250" cy="52" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="350" cy="24" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="450" cy="38" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/></svg></div></div><div class="jr"><div>Pain points</div><div class="pain">Results mix real craft with cheap prints</div><div class="pain">Every listing looks the same</div><div class="pain">No story, no origin, no proof it's authentic</div><div class="pain">Generic checkout, no reassurance</div><div class="pain">Plain box, nothing to tell</div></div><div class="jr"><div>Opportunity</div><div class="opp">Story-led homepage</div><div class="opp">Shop by purpose and by motif</div><div class="opp">Motif lineage on every product</div><div class="opp">A calm 3-step checkout</div><div class="opp">A story card in every parcel</div></div></div>
+    <p class="sub-h">From insight to strategy: decoding motifs</p>
+    <p class="lead">Every product goes through <b>3 steps</b>: folk motif → simple geometry → everyday object.</p>
+    <div class="motifs">
+      <div class="mhead"><span>Motif</span><span>Folk archetype</span><span>Abstraction</span><span>Living object</span></div>
+      <div class="motif">
+        <div class="name"><b>Sarp Ladi</b><small>the serpentine wave</small></div>
+        <div class="mbox"><span class="lbl">Folk</span><svg viewBox="0 0 200 80"><path pathLength="1" d="M10 50 Q35 15 60 45 T110 40 T160 38"/><circle pathLength="1" cx="170" cy="36" r="9"/><path pathLength="1" d="M30 40 l2 2 M55 38 l2 2 M80 50 l2 2 M105 38 l2 2 M130 44 l2 2"/></svg></div>
+        <div class="mbox abs"><span class="lbl">Abstraction</span><svg viewBox="0 0 200 80"><path pathLength="1" d="M10 30 Q35 10 60 30 T110 30 T160 30 T200 30"/><path pathLength="1" d="M10 46 Q35 26 60 46 T110 46 T160 46 T200 46"/><path pathLength="1" d="M10 62 Q35 42 60 62 T110 62 T160 62 T200 62"/></svg></div>
+        <div class="mbox photo"><span class="lbl">Object</span><img src="images/manjusha/prod-journal.jpg" alt="Clothbound linen journal with serpent-wave pattern" loading="lazy"><span class="pname">Clothbound journal</span></div>
+      </div>
+      <div class="motif">
+        <div class="name"><b>Leheriya</b><small>the river current</small></div>
+        <div class="mbox"><span class="lbl">Folk</span><svg viewBox="0 0 200 80"><path pathLength="1" d="M10 25 Q40 10 70 25 T130 25 T190 25"/><path pathLength="1" d="M10 42 Q40 27 70 42 T130 42 T190 42"/><path pathLength="1" d="M10 59 Q40 44 70 59 T130 59 T190 59"/></svg></div>
+        <div class="mbox abs"><span class="lbl">Abstraction</span><svg viewBox="0 0 200 80"><path pathLength="1" d="M30 70 L60 10 M60 70 L90 10 M90 70 L120 10 M120 70 L150 10 M150 70 L180 10"/></svg></div>
+        <div class="mbox photo"><span class="lbl">Object</span><img src="images/manjusha/prod-tote.jpg" alt="Canvas tote with diagonal river-current stripes" loading="lazy"><span class="pname">Canvas market tote</span></div>
+      </div>
+      <div class="motif">
+        <div class="name"><b>Belpatra</b><small>the sacred tri-foliate</small></div>
+        <div class="mbox"><span class="lbl">Folk</span><svg viewBox="0 0 200 80"><path pathLength="1" d="M100 74 C88 60 86 38 100 22 C114 38 112 60 100 74Z"/><path pathLength="1" d="M100 74 C82 72 66 58 62 40 C80 42 94 56 100 74Z"/><path pathLength="1" d="M100 74 C118 72 134 58 138 40 C120 42 106 56 100 74Z"/></svg></div>
+        <div class="mbox abs"><span class="lbl">Abstraction</span><svg viewBox="0 0 200 80"><circle pathLength="1" cx="100" cy="26" r="15"/><circle pathLength="1" cx="86" cy="50" r="15"/><circle pathLength="1" cx="114" cy="50" r="15"/></svg></div>
+        <div class="mbox photo"><span class="lbl">Object</span><img src="images/manjusha/prod-catchall.jpg" alt="Stoneware desk catchall with tri-foliate leaf" loading="lazy"><span class="pname">Stoneware catchall</span></div>
+      </div>
+      <div class="motif">
+        <div class="name"><b>Champa</b><small>the temple blossom</small></div>
+        <div class="mbox"><span class="lbl">Folk</span><svg viewBox="0 0 200 80"><path pathLength="1" d="M100 40 C96 26 98 12 100 8 C102 12 104 26 100 40 C110 30 122 26 128 28 C122 34 112 40 100 40 C112 44 120 54 122 64 C112 60 104 50 100 40 C96 50 88 60 78 64 C80 54 88 44 100 40 C88 40 78 34 72 28 C78 26 90 30 100 40Z"/></svg></div>
+        <div class="mbox abs"><span class="lbl">Abstraction</span><svg viewBox="0 0 200 80"><circle pathLength="1" cx="100" cy="40" r="28"/><circle pathLength="1" cx="100" cy="40" r="6"/><path pathLength="1" d="M100 4 V16 M100 64 V76 M64 40 H76 M124 40 H136"/></svg></div>
+        <div class="mbox photo"><span class="lbl">Object</span><img src="images/manjusha/prod-box.jpg" alt="Carved wooden keepsake box with blossom inlay" loading="lazy"><span class="pname">Carved keepsake box</span></div>
+      </div>
+    </div>
+    <div class="split even" style="margin-top:36px">
+      <div>
+        <p class="sub-h" style="margin-top:0">Grouped by purpose, not by product</p>
+        <p class="lead" style="font-size:17px">People think "I need a gift", not "I want a tray". So 18 objects sit in <b>5 collections</b>.</p>
+        <div class="chips"><span class="chip hot">Everyday</span><span class="chip hot">Home</span><span class="chip hot">Travel</span><span class="chip hot">Gift</span><span class="chip hot">Collect</span></div>
+        <p class="sub-h">Experience journey</p>
+        <div class="journey"><span><b>Discover</b>the story</span><em>→</em><span><b>Connect</b>with the art</span><em>→</em><span><b>Trust</b>the brand</span><em>→</em><span><b>Explore</b>collections</span><em>→</em><span><b>Own</b>a story</span></div>
+      </div>
+      <div><button class="zoom" type="button"><img src="images/manjusha/product-range.jpg" alt="Product range board with 18 objects in five collections" loading="lazy"></button><p class="cap">Product range (visualised with AI image generation).</p></div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="panel" data-step="4" aria-label="Step 4: Design">
+    <div class="ph"><span class="n">04 / 06</span><h2>A palette from <em>pigment</em>.</h2></div>
+<p class="sub-h">Ideas I explored, and why</p><div class="ideas"><div class="idea drop"><span class="chip2">Dropped</span><b>Sell Manjusha wall art</b><p><i>Why I dropped it</i>Already crowded, and it keeps the art on the wall instead of in daily life.</p></div><div class="idea drop"><span class="chip2">Dropped</span><b>Copy motifs straight onto products</b><p><i>Why I dropped it</i>Looks like souvenir merchandise and loses the art's rules.</p></div><div class="idea drop"><span class="chip2">Dropped</span><b>Shop by product category</b><p><i>Why I dropped it</i>People shop for a need ("a gift", "for my desk"), not "trays".</p></div><div class="idea pick"><span class="chip2">Chosen</span><b>Everyday objects + story-led store</b><p><i>Why I chose it</i>Motif → abstraction → object keeps the meaning, and shopping by purpose matches how people buy.</p></div></div>
+    <p class="sub-h">Visual language</p>
+    <div class="grid3 pal" style="grid-template-columns:repeat(6,minmax(0,1fr));gap:10px">
+      <div class="sw" style="background:#93001B;color:#fff"><b>Sindoor</b>#93001B</div>
+      <div class="sw" style="background:#5C0F1A;color:#fff"><b>Oxblood</b>#5C0F1A</div>
+      <div class="sw" style="background:#D7AB52;color:#1E1B15"><b>Ochre</b>#D7AB52</div>
+      <div class="sw" style="background:#33503A;color:#fff"><b>Forest</b>#33503A</div>
+      <div class="sw" style="background:#FAF3E8;color:#1E1B15;border:1px solid var(--line)"><b>Parchment</b>#FAF3E8</div>
+      <div class="sw" style="background:#1E1B15;color:#fff"><b>Ink</b>#1E1B15</div>
+    </div>
+    <div class="split" style="margin-top:24px">
+      <div>
+        <ul class="pts">
+          <li><b>Playfair Display</b> for a museum-label feel; a clean sans for body.</li>
+          <li>Sindoor red is used <b>only for actions</b>.</li>
+          <li>Product cards read: <b>motif → image → name → price</b>. Story first.</li>
+        </ul>
+      </div>
+      <div style="max-width:300px"><img src="images/manjusha/ui-card.jpg" alt="Product card: motif lineage, image, name, price" style="border-radius:16px" loading="lazy"><p class="cap">Product card with its motif lineage tag.</p></div>
+    </div>
+    <p class="sub-h">Iterations · 3 rounds, what I kept and dropped</p>
+    <div class="iters">
+      <div class="iter"><button class="zoom" type="button"><img src="images/manjusha/concept-a.jpg" alt="Concept A: illustrated homepage" loading="lazy"></button><span class="tag">Round 1 · Illustrated</span><p>Closest to the art, but it competed with the products.</p></div>
+      <div class="iter"><button class="zoom" type="button"><img src="images/manjusha/concept-b.jpg" alt="Concept B: lifestyle photo homepage" loading="lazy"></button><span class="tag">Round 2 · Lifestyle</span><p>Warmer, but the story got lost.</p></div>
+      <div class="iter final"><button class="zoom" type="button"><img src="images/manjusha/final-hero.jpg" alt="Final homepage" loading="lazy"></button><span class="tag">Final · Editorial</span><p>Each section has one job: read the story, or shop.</p></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="panel" data-step="5" aria-label="Step 5: Solution and prototype">
+    <div class="ph"><span class="n">05 / 06</span><h2>From story <em>to checkout</em>.</h2></div>
+<p class="sub-h">User flow I designed</p><div class="uflow"><span class="s">Homepage</span><em>→</em><span class="">Shop by purpose</span><em>→</em><span class="">Objects (filter by motif)</span><em>→</em><span class="">Product: story + lineage</span><em>→</em><span class="d">Add to bag or buy now</span><em>→</em><span class="">Bag</span><em>→</em><span class="">Checkout</span><em>→</em><span class="s">Order confirmed + story card</span></div><p class="cap">Dark = start and end · dashed = decision point</p>
+    <p class="sub-h">Try the prototype</p>
+    <div class="proto desk" data-proto data-demo='["Shop Everyday","View object","Add to bag","Proceed to checkout","Place order","Continue shopping"]'>
+      <script type="application/json">{"start": "home", "screens": {"home": {"src": "images/manjusha/final-home.jpg", "name": "Homepage", "hs": [[0.66, 0.98, 32.81, 4.84, "objects", "Shop"], [11.12, 0.85, 59.38, 11.8, "toast:Added to your bag", "Purchase now"], [11.12, 0.85, 72.27, 12.27, "objects", "Discover more"], [24.07, 9.52, 2.97, 22.03, "objects", "Shop Everyday"], [24.07, 9.52, 26.95, 22.11, "objects", "Shop Home"], [24.07, 9.52, 50.94, 22.11, "objects", "Shop Travel"], [24.07, 9.52, 75.0, 22.03, "objects", "Shop Gifts"]]}, "objects": {"src": "images/manjusha/objects.jpg", "name": "Objects listing", "hs": [[1.34, 1.47, 1.56, 10.16, "home", "ANGA home"], [36.88, 1.26, 76.64, 14.61, "product", "View object"]]}, "product": {"src": "images/manjusha/store-product.jpg", "name": "Product page", "hs": [[4.47, 2.01, 2.5, 14.84, "home", "ANGA home"], [4.75, 1.46, 19.84, 2.55, "objects", "Shop"], [4.75, 1.46, 24.74, 4.46, "objects", "Objects"], [4.75, 1.46, 31.55, 5.74, "toast:Our Story page: Bihula's tale and the artisans", "Our story"], [4.75, 1.46, 39.63, 8.93, "toast:Meet the Bhagalpur artisans (next iteration)", "Craft & people"], [5.03, 0.9, 88.71, 4.1, "toast:Your bag is empty", "Bag"], [8.25, 3.68, 2.5, 95, "back", "Back to objects"], [43.53, 3.75, 60.78, 17.89, "bag", "Add to bag"], [43.53, 3.75, 79.61, 17.89, "checkout", "Buy now"]]}, "bag": {"src": "images/manjusha/store-bag.jpg", "name": "Your bag", "hs": [[6.5, 2.92, 2.5, 14.84, "home", "ANGA home"], [6.91, 2.12, 19.84, 2.55, "objects", "Shop"], [6.91, 2.12, 24.74, 4.46, "objects", "Objects"], [6.91, 2.12, 31.55, 5.74, "toast:Our Story page: Bihula's tale and the artisans", "Our story"], [6.91, 2.12, 39.63, 8.93, "toast:Meet the Bhagalpur artisans (next iteration)", "Craft & people"], [7.31, 1.31, 89.06, 3.75, "bag", "Bag"], [13.81, 1.31, 2.5, 11.79, "back", "Back"], [57.26, 5.44, 66.88, 28.44, "checkout", "Proceed to checkout"]]}, "checkout": {"src": "images/manjusha/store-checkout.jpg", "name": "Checkout", "hs": [[6.34, 2.85, 2.5, 14.84, "home", "ANGA home"], [7.12, 1.28, 93.75, 3.75, "bag", "Bag"], [13.46, 1.28, 2.5, 8.07, "back", "Back"], [59.82, 5.3, 66.88, 28.44, "confirm", "Place order"]]}, "confirm": {"src": "images/manjusha/store-confirm.jpg", "name": "Order confirmed", "hs": [[6.34, 2.85, 2.5, 14.84, "home", "ANGA home"], [6.74, 2.07, 19.84, 2.55, "objects", "Shop"], [6.74, 2.07, 24.74, 4.46, "objects", "Objects"], [6.74, 2.07, 31.55, 5.74, "toast:Our Story page: Bihula's tale and the artisans", "Our story"], [6.74, 2.07, 39.63, 8.93, "toast:Meet the Bhagalpur artisans (next iteration)", "Craft & people"], [7.13, 1.28, 88.71, 4.1, "toast:Your bag is empty", "Bag"], [79.25, 5.31, 32.54, 19.41, "home", "Continue shopping"], [79.25, 5.31, 53.04, 14.42, "toast:Tracking link sent by email", "Track order"]]}}}</script>
+      <div class="pdev desk-d"><div class="bar"><i></i><i></i><i></i></div><div class="pscr" style="aspect-ratio:16/9"><div class="pview"><img alt=""></div></div><div class="ptoast" role="status"></div></div>
+      <div class="pctl" style="flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px">
+        <p class="now">Now viewing<b>Homepage</b></p>
+        <div class="pbtns"><button class="pb on" type="button" data-play>❚❚ Pause demo</button><button class="pb" type="button" data-back>← Back</button><button class="pb" type="button" data-restart>Restart</button></div>
+      </div>
+    </div>
+    <p class="sub-h">Key design decisions</p>
+    <div class="grid4">
+      <div class="tile line"><p class="k">01</p><p><b>Product-led hero</b> with one clear action: "Purchase now".</p></div>
+      <div class="tile line"><p class="k">02</p><p><b>Shop by purpose:</b> Everyday, Home, Travel, Gifts.</p></div>
+      <div class="tile line"><p class="k">03</p><p><b>Story next to the price:</b> each product page traces its motif.</p></div>
+      <div class="tile line"><p class="k">04</p><p><b>3-step checkout</b> with a story card in every parcel.</p></div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="panel" data-step="6" aria-label="Step 6: Test and outcome">
+    <div class="ph"><span class="n">06 / 06</span><h2>Rules, <em>not decoration</em>.</h2></div>
+    <div class="grid4">
+      <div class="stat"><b>4</b><span>visual rules decoded into a brand</span></div>
+      <div class="stat"><b>6</b><span>borders redrawn as a pattern library</span></div>
+      <div class="stat"><b>18</b><span>products in 5 collections</span></div>
+      <div class="stat"><b>6</b><span>screens, browsing to order confirmed</span></div>
+    </div>
+<p class="sub-h">Usability test plan <span class="status">Planned</span></p><div class="tplan"><div><h5>Tasks</h5><ol><li>Find a gift under ₹1,500 for a friend who loves stories.</li><li>Tell me the story behind the keepsake box.</li><li>Buy it and get to order confirmed.</li></ol></div><div><h5>What I'll measure</h5><ul><li>Task success rate</li><li>Time on task</li><li>Can they retell the story? (comprehension)</li><li>SUS ease-of-use score</li></ul></div><div><h5>Who &amp; how</h5><p>5 gift buyers aged 22–35, 20-minute remote sessions with the clickable prototype, thinking aloud.</p><p class="cap" style="margin-top:10px">Goal: check that buyers understand the story and can buy without help.</p></div></div>
+    <div class="grid3" style="margin-top:14px">
+      <div class="tile line"><p class="k">What I learned</p><p>Translating a culture means understanding its rules. Once I knew them, every decision had a reason.</p></div>
+      <div class="tile line"><p class="k">The psychology</p><p>People value objects more when they know their story. The motif next to the price builds connection.</p></div>
+      <div class="tile line"><p class="k">What makes it different</p><div class="chips" style="margin-top:4px"><span class="chip hot">Story-led commerce</span><span class="chip hot">Culture → system</span><span class="chip hot">Purpose-based shopping</span><span class="chip hot">Motif lineage on every product</span></div></div>
+    </div>
+  </section>
+
+  </div>
+</main>
+
+<section class="files-end" aria-label="Project files"><div class="wrap"><div><p class="eyebrow" style="color:var(--acc);margin:0 0 10px">Project files</p><h2>Manjusha Stories, in full.</h2><p>Figma file, research board and resume, ready to share.</p></div><div class="pfiles"><a class="fig" href="https://www.figma.com/design/S78MfCis4Sqc5ntNYsYcMW/Portfolio" target="_blank" rel="noopener">Open Figma file ↗</a><a href="figma-source/manjusha/research.html" target="_blank" rel="noopener">Research board ↗</a><a href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a><a href="mailto:adya1023@gmail.com">Email me</a></div></div></section>
+
+<footer class="foot"><div class="wrap"><span>© 2026 Adya</span><a class="br" href="index.html#home"><span class="b">[</span>Home<span class="b">]</span></a></div></footer>
+<script>
+(() => { const g = document.getElementById('coverWaves'); let d = '';
+  for (let i = 0; i < 16; i++) { const y = 30 + i * 58, a = 16 + (i % 3) * 6; let p = `M-200 ${y} Q-150 ${y - a} -100 ${y}`; for (let x = 0; x <= 1800; x += 100) p += ` T${x} ${y}`; d += `<path d="${p}"/>`; }
+  g.innerHTML = d; })();
+</script>
+<script src="assets/case.js"></script>
+</body>
+</html>

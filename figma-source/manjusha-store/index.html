@@ -1,0 +1,221 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+:root{--red:#93001B;--cream:#FDF6EC;--card:#fff;--ink:#1E1B15;--mut:#6B6257;--olive:#6B5A1E;--line:#EADFCF;--sand:#F6EDE0}
+*{box-sizing:border-box}body{margin:0;background:#888}
+.s{width:1280px;background:var(--cream);color:var(--ink);font-family:Poppins,sans-serif;margin-bottom:40px;position:relative}
+img{display:block;max-width:100%}
+.ban{background:var(--red);color:#fff;text-align:center;font:500 11px "DejaVu Sans Mono",monospace;letter-spacing:.28em;padding:13px}
+.nav{display:flex;align-items:center;height:80px;padding:0 32px;gap:32px}
+.logo{display:flex;align-items:center;gap:8px;font:600 15px Lora,serif;letter-spacing:.12em;width:190px}
+.logo i{font-style:normal;color:var(--red);font-size:20px}.logo small{display:block;font:7px Poppins;letter-spacing:.2em;color:var(--mut)}
+.links{display:flex;gap:30px;font:500 11px "DejaVu Sans Mono",monospace;letter-spacing:.14em;flex:1}
+.links .on{color:var(--red);border-bottom:2px solid var(--red);padding-bottom:6px}
+.icons{display:flex;gap:28px;align-items:center;font:500 11px "DejaVu Sans Mono",monospace;letter-spacing:.08em}
+.av{width:32px;height:32px;border-radius:50%;background:var(--red)}
+.bagc{background:var(--red);color:#fff;border-radius:9px;padding:1px 7px;margin-left:4px}
+.wrap{padding:0 32px}
+.crumb{font:11px "DejaVu Sans Mono",monospace;letter-spacing:.12em;color:var(--mut);padding:18px 0 22px}
+.crumb b{color:var(--ink);font-weight:500}
+.lab{font:500 12px Poppins;letter-spacing:.2em;text-transform:uppercase;color:var(--olive)}
+.tag{display:inline-block;background:var(--red);color:#fff;font:500 12px Poppins;letter-spacing:.18em;text-transform:uppercase;padding:7px 12px}
+h1,h2,h3{font-family:Lora,serif;font-weight:500;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;background:var(--red);color:#fff;font:500 14px Poppins;letter-spacing:.2em;text-transform:uppercase}
+.btn2{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border:1.5px solid var(--ink);font:500 14px Poppins;letter-spacing:.2em;text-transform:uppercase}
+.box{background:var(--card);padding:28px}
+.foot{background:var(--ink);color:#d9d0c3;padding:40px 32px;display:flex;justify-content:space-between;font:11px "DejaVu Sans Mono",monospace;letter-spacing:.12em;margin-top:64px}
+/* product */
+.pdp{display:grid;grid-template-columns:96px 1fr 470px;gap:24px}
+.thumbs{display:flex;flex-direction:column;gap:12px}
+.thumbs img{width:96px;height:96px;object-fit:cover;border:1px solid var(--line)}
+.thumbs img.on{outline:2px solid var(--red);outline-offset:2px}
+.main{position:relative;background:#efe4d3;min-height:600px}.main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.main .bt{position:absolute;left:16px;bottom:16px;background:#FDF6EC;font:500 13px Poppins;letter-spacing:.06em;padding:6px 10px}
+.info h1{font-size:40px;line-height:1.12;margin:16px 0 10px}
+.price{font:600 30px Lora,serif;margin:18px 0 4px}.price small{font:13px Poppins;color:var(--mut)}
+.desc{font-size:15px;line-height:1.6;color:var(--mut);margin:14px 0 20px}
+.lin{display:flex;gap:14px;align-items:center;background:var(--sand);padding:14px 16px;margin-bottom:20px}
+.lin svg{width:46px;height:46px;flex:none}
+.lin small{display:block;font:10px "DejaVu Sans Mono",monospace;letter-spacing:.16em;color:var(--red);margin-bottom:3px}
+.lin b{font:500 16px Lora,serif}
+.qty{display:flex;align-items:center;gap:16px;margin-bottom:16px;font-size:14px}
+.qty span.q{display:inline-flex;border:1px solid var(--line);background:#fff}.qty span.q i{font-style:normal;width:40px;height:40px;display:grid;place-items:center}
+.ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);margin-top:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust div{padding:14px 6px;text-align:center;font-size:12px;color:var(--mut)}.trust b{display:block;font:600 15px Lora,serif;color:var(--ink)}
+.acc{margin-top:18px}.acc div{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);font:500 13px Poppins;letter-spacing:.12em;text-transform:uppercase}
+.story{margin-top:56px}
+.story h2{font-size:34px;margin:8px 0 24px}
+.trace{display:grid;grid-template-columns:1fr 40px 1fr 40px 1.3fr;align-items:center}
+.trace .c{background:#fff;height:200px;display:grid;place-items:center;position:relative}
+.trace .c small{position:absolute;left:14px;top:12px;font:10px "DejaVu Sans Mono",monospace;letter-spacing:.16em;color:var(--mut)}
+.trace .ar{text-align:center;color:var(--red);font-size:22px}
+.trace .c img{width:100%;height:200px;object-fit:cover}
+.trace svg{width:120px;height:120px}
+/* bag */
+.ttl{display:flex;justify-content:space-between;align-items:flex-end;margin:6px 0 28px}
+.ttl h1{font-size:52px}
+.cols{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+.item{display:grid;grid-template-columns:160px 1fr auto;gap:24px;background:#fff;padding:24px}
+.item img{width:160px;height:160px;object-fit:cover}
+.item h3{font-size:24px;margin:8px 0 6px}
+.item p{margin:0;font-size:14px;color:var(--mut);line-height:1.6}
+.sum h3{font-size:26px;margin-bottom:18px}
+.row{display:flex;justify-content:space-between;padding:12px 0;font-size:15px;border-bottom:1px solid var(--line)}
+.row.t{font:600 20px Lora,serif;border:0;padding-top:18px}
+.note{display:flex;gap:12px;background:var(--sand);padding:16px;margin-top:16px;font-size:13px;line-height:1.5;color:var(--mut)}
+.note b{color:var(--ink)}
+.steps{display:flex;gap:10px;align-items:center;font:500 12px Poppins;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.steps .on{color:var(--red)}.steps i{font-style:normal}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fl{display:flex;flex-direction:column;gap:6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.fl span{height:50px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;padding:0 14px;font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink)}
+.fl.w{grid-column:1/-1}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pay div{border:1px solid var(--line);background:#fff;padding:16px;font-size:15px;display:flex;gap:10px;align-items:center}
+.pay div i{width:18px;height:18px;border-radius:50%;border:2px solid var(--line)}
+.pay div.on{border-color:var(--red)}.pay div.on i{border:5px solid var(--red)}
+.mini{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line);font-size:14px}
+.mini img{width:72px;height:72px;object-fit:cover}
+/* confirm */
+.done{max-width:860px;margin:0 auto;text-align:center;padding:56px 0 0}
+.chk{width:84px;height:84px;border-radius:50%;background:var(--red);display:grid;place-items:center;margin:0 auto 26px}
+.done h1{font-size:54px;line-height:1.08}
+.done p.l{font-size:17px;color:var(--mut);line-height:1.6;max-width:600px;margin:18px auto 30px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;text-align:left}
+.meta div{padding:20px 24px;border-right:1px solid var(--line)}.meta div:last-child{border:0}
+.meta small{display:block;font:10px "DejaVu Sans Mono",monospace;letter-spacing:.16em;color:var(--mut);margin-bottom:6px}
+.meta b{font:500 18px Lora,serif}
+.card{display:grid;grid-template-columns:200px 1fr;gap:28px;background:var(--sand);text-align:left;margin-top:20px;padding:24px;align-items:center}
+.card img{width:200px;height:150px;object-fit:cover}
+.card h3{font-size:26px;margin:8px 0}.card p{margin:0;font-size:14px;color:var(--mut);line-height:1.6}
+.dbtns{display:flex;gap:14px;justify-content:center;margin-top:30px}
+svg.m *{fill:none;stroke:var(--red);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+svg.k *{fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+</style></head><body>
+
+<!-- ============ PRODUCT ============ -->
+<section class="s" id="product">
+  <div class="ban">AUTUMN / WINTER 2026 — TRACEABLE CRAFT FROM BIHAR</div>
+  <div class="nav"><div class="logo"><i>✲</i><div>ANGA<small>EDITIONS · BIHAR</small></div></div>
+    <div class="links"><span class="on">SHOP</span><span>OBJECTS</span><span>OUR STORY</span><span>CRAFT &amp; PEOPLE</span></div>
+    <div class="icons"><span>⌕</span><span>♡ WISHLIST (0)</span><span>BAG (0)</span><span class="av"></span></div></div>
+  <div class="wrap">
+    <div class="crumb">SHOP / OBJECTS / <b>MANJUSHA SHEESHAM KEEPSAKE BOX</b></div>
+    <div class="pdp">
+      <div class="thumbs"><img class="on" src="img/main.jpg"><img src="img/t-box.jpg"><img src="img/t-pouch.jpg"><img src="img/t-journal.jpg"></div>
+      <div class="main"><img src="img/main.jpg"><span class="bt">BATCH #BH-04/100</span></div>
+      <div class="info">
+        <span class="tag">Studio spotlight · Edition 04</span>
+        <h1>Manjusha Sheesham Keepsake Box</h1>
+        <div class="lab">Woodwork · Solid sheesham &amp; inlaid brass</div>
+        <div class="price">₹1,450 <small>/ $15 · incl. taxes</small></div>
+        <p class="desc">Aged sheesham with hand-chiselled joinery and inlaid brass lines tracing the serpent wave of Bihula's journey.</p>
+        <div class="lin"><svg class="m" viewBox="0 0 60 60"><path d="M30 50 C 18 40 14 28 30 10 C 46 28 42 40 30 50Z"/><path d="M30 50 C 20 46 8 40 6 26 C 18 28 26 36 30 50"/><path d="M30 50 C 40 46 52 40 54 26 C 42 28 34 36 30 50"/></svg>
+          <div><small>MOTIF LINEAGE</small><b>Champa, the temple blossom &amp; Sarp Ladi</b></div></div>
+        <div class="qty">Quantity <span class="q"><i>−</i><i>1</i><i>+</i></span><span style="color:var(--olive)">Only 6 left in this batch</span></div>
+        <div class="ctas"><span class="btn">Add to bag</span><span class="btn2">Buy now</span></div>
+        <div class="trust"><div><b>100%</b>Handcrafted</div><div><b>GI</b>Registered craft</div><div><b>3 days</b>To dispatch</div></div>
+        <div class="acc"><div>Dimensions · 28 × 18 × 9 cm <span>+</span></div><div>Craft lineage · Bhagalpur guild <span>+</span></div><div>Care &amp; delivery <span>+</span></div></div>
+      </div>
+    </div>
+    <div class="story">
+      <div class="lab">The story behind your object</div>
+      <h2>From a temple blossom to your desk.</h2>
+      <div class="trace">
+        <div class="c"><small>FOLK MOTIF</small><svg class="m" viewBox="0 0 120 120"><path d="M60 100 C 36 80 28 56 60 20 C 92 56 84 80 60 100Z"/><path d="M60 100 C 40 92 16 80 12 52 C 36 56 52 72 60 100"/><path d="M60 100 C 80 92 104 80 108 52 C 84 56 68 72 60 100"/><circle cx="60" cy="58" r="6"/></svg></div>
+        <div class="ar">→</div>
+        <div class="c"><small>ABSTRACTION</small><svg class="k" viewBox="0 0 120 120"><path d="M60 96 L 40 60 L 60 24 L 80 60 Z"/><path d="M60 96 L 18 66 L 40 60"/><path d="M60 96 L 102 66 L 80 60"/></svg></div>
+        <div class="ar">→</div>
+        <div class="c"><small style="color:#fff;z-index:1">YOUR OBJECT</small><img src="img/t-box.jpg"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>ANGA · EDITIONS FROM BIHAR</span><span>SHIPPING · RETURNS · CARE</span></div>
+</section>
+
+<!-- ============ BAG ============ -->
+<section class="s" id="bag">
+  <div class="ban">FREE SHIPPING ON ORDERS ABOVE ₹999</div>
+  <div class="nav"><div class="logo"><i>✲</i><div>ANGA<small>EDITIONS · BIHAR</small></div></div>
+    <div class="links"><span class="on">SHOP</span><span>OBJECTS</span><span>OUR STORY</span><span>CRAFT &amp; PEOPLE</span></div>
+    <div class="icons"><span>⌕</span><span>♡ WISHLIST (0)</span><span>BAG<b class="bagc">1</b></span><span class="av"></span></div></div>
+  <div class="wrap">
+    <div class="crumb"><span>← CONTINUE SHOPPING</span></div>
+    <div class="ttl"><h1>Your bag</h1><div class="steps"><span class="on">1 Bag</span><i>—</i><span>2 Details</span><i>—</i><span>3 Payment</span></div></div>
+    <div class="cols">
+      <div>
+        <div class="item"><img src="img/main.jpg"><div><div class="lab">Woodwork · Edition 04</div><h3>Manjusha Sheesham Keepsake Box</h3><p>Motif: Champa &amp; Sarp Ladi · Batch #BH-04/100<br>Qty 1 · Ships in 3 days</p><p style="margin-top:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)">Remove · Move to wishlist</p></div><div style="font:600 22px Lora,serif">₹1,450</div></div>
+        <div class="note" style="margin-top:14px"><span style="font-size:22px">✉</span><div><b>Every object ships with its story card,</b> telling the folk tale and the artisan who made it.</div></div>
+        <div class="lab" style="margin:36px 0 14px">Pairs well with</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+          <div class="box" style="padding:14px"><img src="img/t-journal.jpg" style="height:130px;width:100%;object-fit:cover"><div style="font:500 16px Lora,serif;margin-top:10px">Sarp Ladi Journal</div><div style="font-size:13px;color:var(--mut)">₹890</div></div>
+          <div class="box" style="padding:14px"><img src="img/t-pouch.jpg" style="height:130px;width:100%;object-fit:cover"><div style="font:500 16px Lora,serif;margin-top:10px">Champa Linen Pouch</div><div style="font-size:13px;color:var(--mut)">₹540</div></div>
+          <div class="box" style="padding:14px"><img src="img/t-tote.jpg" style="height:130px;width:100%;object-fit:cover"><div style="font:500 16px Lora,serif;margin-top:10px">Belpatra Canvas Tote</div><div style="font-size:13px;color:var(--mut)">₹1,690</div></div>
+        </div>
+      </div>
+      <div class="box sum">
+        <h3>Order summary</h3>
+        <div class="row"><span>Subtotal</span><span>₹1,450</span></div>
+        <div class="row"><span>Shipping</span><span style="color:#33503A">Free</span></div>
+        <div class="row"><span>Gift wrap with story card</span><span>Included</span></div>
+        <div class="row t"><span>Total</span><span>₹1,450</span></div>
+        <span class="btn" style="width:100%;margin-top:18px">Proceed to checkout →</span>
+        <p style="font-size:12px;color:var(--mut);text-align:center;margin:14px 0 0">UPI · Cards · Net banking · Cash on delivery</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>ANGA · EDITIONS FROM BIHAR</span><span>SHIPPING · RETURNS · CARE</span></div>
+</section>
+
+<!-- ============ CHECKOUT ============ -->
+<section class="s" id="checkout">
+  <div class="ban">SECURE CHECKOUT</div>
+  <div class="nav"><div class="logo"><i>✲</i><div>ANGA<small>EDITIONS · BIHAR</small></div></div>
+    <div class="links"></div><div class="icons"><span>🔒 SECURE</span><span>BAG<b class="bagc">1</b></span></div></div>
+  <div class="wrap">
+    <div class="crumb"><span>← BACK TO BAG</span></div>
+    <div class="ttl"><h1>Checkout</h1><div class="steps"><span>1 Bag ✓</span><i>—</i><span class="on">2 Details</span><i>—</i><span class="on">3 Payment</span></div></div>
+    <div class="cols">
+      <div class="box">
+        <div class="lab" style="margin-bottom:14px">Contact</div>
+        <div class="f"><div class="fl">Full name<span>Riya Sharma</span></div><div class="fl">Phone<span>+91 98765 43210</span></div><div class="fl w">Email<span>riya.sharma@example.com</span></div></div>
+        <div class="lab" style="margin:28px 0 14px">Delivery address</div>
+        <div class="f"><div class="fl w">Address<span>Flat 12, Lotus Residency, Viman Nagar</span></div><div class="fl">City<span>Pune</span></div><div class="fl">PIN code<span>411014</span></div></div>
+        <div class="lab" style="margin:28px 0 14px">Payment</div>
+        <div class="pay"><div class="on"><i></i>UPI</div><div><i></i>Card</div><div><i></i>Cash on delivery</div></div>
+      </div>
+      <div class="box sum">
+        <h3>Your order</h3>
+        <div class="mini"><img src="img/main.jpg"><div><b style="font:500 16px Lora,serif">Sheesham Keepsake Box</b><br><span style="color:var(--mut)">Qty 1 · Edition 04</span></div><span>₹1,450</span></div>
+        <div class="row"><span>Shipping</span><span style="color:#33503A">Free</span></div>
+        <div class="row"><span>Estimated delivery</span><span>4–6 Nov</span></div>
+        <div class="row t"><span>Total</span><span>₹1,450</span></div>
+        <span class="btn" style="width:100%;margin-top:18px">Place order · ₹1,450</span>
+        <p style="font-size:12px;color:var(--mut);text-align:center;margin:14px 0 0">Free returns within 7 days</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>ANGA · EDITIONS FROM BIHAR</span><span>SHIPPING · RETURNS · CARE</span></div>
+</section>
+
+<!-- ============ CONFIRMED ============ -->
+<section class="s" id="confirm">
+  <div class="ban">THANK YOU FOR KEEPING A STORY ALIVE</div>
+  <div class="nav"><div class="logo"><i>✲</i><div>ANGA<small>EDITIONS · BIHAR</small></div></div>
+    <div class="links"><span class="on">SHOP</span><span>OBJECTS</span><span>OUR STORY</span><span>CRAFT &amp; PEOPLE</span></div>
+    <div class="icons"><span>⌕</span><span>♡ WISHLIST (0)</span><span>BAG (0)</span><span class="av"></span></div></div>
+  <div class="wrap">
+    <div class="done">
+      <div class="chk"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <div class="lab">Order #ANGA-2611 confirmed</div>
+      <h1 style="margin-top:12px">Your story is on its way.</h1>
+      <p class="l">We've sent the details to riya.sharma@example.com. Your keepsake box is being packed by hand in Bhagalpur.</p>
+      <div class="meta"><div><small>ARRIVES</small><b>4–6 November</b></div><div><small>PAID</small><b>₹1,450 · UPI</b></div><div><small>DELIVER TO</small><b>Viman Nagar, Pune</b></div></div>
+      <div class="card"><img src="img/t-box.jpg"><div><div class="lab">Inside your parcel</div><h3>The story of Champa</h3><p>A printed story card tells how the temple blossom appears in Bihula's tale, and introduces the Bhagalpur artisan who carved your box.</p></div></div>
+      <div class="dbtns"><span class="btn">Continue shopping</span><span class="btn2">Track order</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>ANGA · EDITIONS FROM BIHAR</span><span>SHIPPING · RETURNS · CARE</span></div>
+</section>
+</body></html>

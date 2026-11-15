@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADYPU App — Redesigned screens</title>
+<style>
+:root{
+  --g:#0B6B5A; --g2:#084F43; --mint:#E7F4F0; --mint2:#CFE9E1; --bg:#F5F7F6; --s:#FFFFFF; --t:#12201C; --m:#56665F; --b:#DCE5E1;
+  --amber:#F4B740; --amberBg:#FFF4DB; --err:#C2362B; --errBg:#FDECEA;
+  --f:"Inter",system-ui,sans-serif; --fd:"Inter Display","Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#E9EEEC;font-family:var(--f);color:var(--t);-webkit-font-smoothing:antialiased}
+.board{display:flex;flex-wrap:wrap;gap:48px;padding:56px;justify-content:center}
+.screen{position:relative;width:390px;height:844px;background:var(--bg);border-radius:40px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(18,32,28,.35);display:flex;flex-direction:column}
+.scroll{flex:1;overflow:hidden;padding:0 20px}
+.top{padding:52px 20px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.01em}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--g);color:#fff;display:grid;place-items:center;font-style:normal;font-size:16px}
+.icbtn{width:44px;height:44px;border-radius:50%;background:var(--s);border:1px solid var(--b);display:grid;place-items:center;position:relative;flex:none}
+.icbtn .dot{position:absolute;top:10px;right:11px;width:8px;height:8px;border-radius:50%;background:var(--err);border:2px solid #fff}
+svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+h1{font-family:var(--fd);font-size:28px;line-height:1.15;letter-spacing:-.02em;margin:0 0 16px;font-weight:700}
+h2{font-family:var(--fd);font-size:22px;line-height:1.2;letter-spacing:-.01em;margin:0;font-weight:700}
+h3{font-size:17px;margin:0;font-weight:600;line-height:1.3}
+.sub{font-size:15px;color:var(--m);line-height:1.5;margin:0}
+.search{display:flex;align-items:center;gap:10px;height:52px;padding:0 16px;border-radius:14px;background:var(--s);border:1px solid var(--b);color:var(--m);font-size:16px}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 12px}
+.sechead a{font-size:15px;font-weight:600;color:var(--g);text-decoration:none}
+.banner{display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 16px;border-radius:16px;background:var(--amberBg);border:1px solid #F7D98E}
+.banner .ic{width:40px;height:40px;border-radius:12px;background:var(--amber);display:grid;place-items:center;color:#3A2A00;flex:none}
+.banner b{display:block;font-size:15px}
+.banner span{font-size:14px;color:#6B5413}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.qa{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:13px;font-weight:500;text-align:center}
+.qa i{width:60px;height:60px;border-radius:18px;background:var(--mint);color:var(--g);display:grid;place-items:center}
+.hscroll{display:flex;gap:12px;margin-right:-20px}
+.pcard{flex:none;width:240px;border-radius:18px;background:var(--s);border:1px solid var(--b);overflow:hidden}
+.pcard img{width:100%;height:120px;object-fit:cover;display:block}
+.pcard .in{padding:14px}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em}
+.t-eng{background:#E3EEFF;color:#1F4FA8}.t-des{background:#FCE7F1;color:#A3245E}.t-man{background:#FFF0DB;color:#8A5300}.t-law{background:#EDE7FB;color:#5B3BA8}
+.facts{display:flex;gap:14px;margin-top:8px;font-size:14px;color:var(--m)}
+.facts span{display:inline-flex;align-items:center;gap:5px}
+.facts svg.i{width:16px;height:16px}
+.evrow{display:flex;gap:14px;align-items:center;padding:14px;border-radius:16px;background:var(--s);border:1px solid var(--b);margin-bottom:10px}
+.date{width:56px;height:60px;border-radius:12px;background:var(--mint);color:var(--g2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none}
+.date small{font-size:12px;font-weight:600;letter-spacing:.06em}
+.date b{font-family:var(--fd);font-size:22px;line-height:1}
+.evrow .meta{font-size:14px;color:var(--m);margin-top:3px}
+.evrow .chev{margin-left:auto;color:var(--m)}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);padding:8px 8px 26px;background:var(--s);border-top:1px solid var(--b)}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:500;color:var(--m);text-decoration:none;padding:6px 0;min-height:52px}
+.nav a.on{color:var(--g)}
+.nav a.on svg.i{fill:var(--mint2)}
+.chips{display:flex;gap:8px;margin:16px -20px 0 0;overflow:hidden}
+.chip{flex:none;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--b);background:var(--s);display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500}
+.chip.on{background:var(--g);border-color:var(--g);color:#fff}
+.chip small{font-size:12px;opacity:.75}
+.count{font-size:14px;color:var(--m);margin:16px 0 10px;display:flex;justify-content:space-between;align-items:center}
+.count b{color:var(--t)}
+.lcard{padding:16px;border-radius:18px;background:var(--s);border:1px solid var(--b);margin-bottom:10px}
+.lcard .row{display:flex;justify-content:space-between;align-items:center}
+.lcard h3{margin:10px 0 0}
+.lcard .facts{margin-top:8px}
+.lcard .foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--b);font-size:15px;font-weight:600;color:var(--g)}
+.save{color:var(--m)}
+.hero{position:relative;height:250px}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 40%)}
+.hero .bar{position:absolute;top:50px;left:16px;right:16px;display:flex;justify-content:space-between;z-index:1}
+.hero .icbtn{background:rgba(255,255,255,.92);border:0}
+.sheet{position:relative;margin-top:-24px;background:var(--bg);border-radius:24px 24px 0 0;padding:20px 20px 0;flex:1;overflow:hidden}
+.kf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.kf div{padding:12px 14px;border-radius:14px;background:var(--s);border:1px solid var(--b)}
+.kf small{display:block;font-size:12px;color:var(--m);margin-bottom:2px}
+.kf b{font-size:16px}
+.tabs{display:flex;gap:4px;margin-top:18px;padding:4px;border-radius:12px;background:#E8EEEB}
+.tabs span{flex:1;height:40px;display:grid;place-items:center;font-size:15px;font-weight:500;border-radius:9px;color:var(--m)}
+.tabs span.on{background:var(--s);color:var(--t);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.para{font-size:15px;line-height:1.55;color:var(--t);margin:14px 0 0}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.45;margin-top:10px}
+.check svg.i{color:var(--g);width:20px;height:20px;margin-top:1px}
+.cta{display:flex;align-items:center;gap:10px;padding:14px 20px 30px;background:var(--s);border-top:1px solid var(--b)}
+.btn{height:52px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;border:0;padding:0 18px}
+.btn.p{background:var(--g);color:#fff;flex:1}
+.btn.s{background:var(--s);color:var(--g2);border:1.5px solid var(--b)}
+.btn.full{width:100%;flex:none}
+.cta .btn{flex-shrink:0}
+.ghost{display:block;text-align:center;font-size:15px;font-weight:600;color:var(--g);margin-top:12px;padding:8px}
+.appbar{padding:52px 12px 8px;display:flex;align-items:center;gap:6px}
+.appbar .ttl{flex:1;font-size:17px;font-weight:600;text-align:center}
+.appbar .lnk{font-size:15px;font-weight:600;color:var(--g);padding:0 10px;height:44px;display:grid;place-items:center}
+.icplain{width:44px;height:44px;display:grid;place-items:center}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0 4px}
+.steps i{display:block;height:6px;border-radius:3px;background:var(--b)}
+.steps i.done{background:var(--g)}.steps i.cur{background:linear-gradient(90deg,var(--g) 50%,var(--b) 50%)}
+.steplbl{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:12px;color:var(--m);margin-bottom:18px}
+.steplbl span.on{color:var(--t);font-weight:600}
+.field{margin-top:16px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.input{height:52px;border-radius:12px;background:var(--s);border:1.5px solid var(--b);display:flex;align-items:center;padding:0 14px;font-size:16px;gap:10px}
+.input.filled{color:var(--t)}.input.ph{color:#8A9993}
+.input.focus{border-color:var(--g);box-shadow:0 0 0 4px rgba(11,107,90,.12)}
+.input.error{border-color:var(--err);background:#FFFBFA}
+.input .pre{padding-right:10px;border-right:1px solid var(--b);color:var(--t);font-weight:500}
+.help{font-size:13px;color:var(--m);margin-top:6px}
+.errtxt{font-size:13px;color:var(--err);margin-top:6px;display:flex;gap:6px;align-items:center;font-weight:500}
+.errtxt svg.i{width:16px;height:16px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg span{height:48px;border-radius:12px;border:1.5px solid var(--b);background:var(--s);display:grid;place-items:center;font-size:15px;font-weight:500}
+.seg span.on{border-color:var(--g);background:var(--mint);color:var(--g2);font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.timeline{position:relative;margin-top:14px;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:var(--b)}
+.tl{position:relative;padding-bottom:18px}
+.tl::before{content:"";position:absolute;left:-28px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--s);border:2px solid var(--b)}
+.tl.done::before{background:var(--g);border-color:var(--g)}
+.tl.next::before{border-color:var(--g);box-shadow:0 0 0 4px rgba(11,107,90,.15)}
+.tl b{display:block;font-size:15px}
+.tl span{font-size:14px;color:var(--m)}
+.tl .when{display:inline-block;margin-top:6px;font-size:13px;font-weight:600;color:var(--g2);background:var(--mint);padding:4px 10px;border-radius:999px}
+.tl .when.warn{background:var(--amberBg);color:#7A5600}
+.card{padding:16px;border-radius:18px;background:var(--s);border:1px solid var(--b);margin-top:14px}
+.schol{display:flex;gap:14px;align-items:center;padding:16px;border-radius:18px;background:var(--g);color:#fff;margin-top:14px}
+.schol b{font-family:var(--fd);font-size:26px;display:block;line-height:1.1}
+.schol span{font-size:14px;opacity:.85}
+.success{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:20px}
+.tick{width:84px;height:84px;border-radius:50%;background:var(--mint);display:grid;place-items:center;margin-bottom:18px}
+.tick i{width:60px;height:60px;border-radius:50%;background:var(--g);display:grid;place-items:center;color:#fff}
+.ref{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:14px;background:var(--s);border:1.5px dashed var(--mint2);margin-top:18px}
+.ref small{display:block;font-size:12px;color:var(--m)}
+.ref b{font-size:18px;letter-spacing:.04em}
+.copy{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border-radius:10px;background:var(--mint);color:var(--g2);font-size:14px;font-weight:600}
+.feat{position:relative;border-radius:20px;overflow:hidden;margin-top:16px;height:210px;color:#fff}
+.feat img{width:100%;height:100%;object-fit:cover}
+.feat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 25%,rgba(6,30,25,.88))}
+.feat .in{position:absolute;left:16px;right:16px;bottom:14px;z-index:1}
+.feat .tag{background:rgba(255,255,255,.9);color:var(--g2)}
+.feat h3{font-size:19px;margin-top:8px}
+.feat .meta{font-size:14px;opacity:.9;margin-top:4px;display:flex;gap:12px}
+.seats{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px}
+.seats .barx{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.3);overflow:hidden}
+.seats .barx i{display:block;height:100%;width:70%;background:var(--amber)}
+.ticket{margin-top:18px;border-radius:22px;background:var(--s);border:1px solid var(--b);overflow:hidden}
+.ticket .tt{padding:18px;background:var(--g);color:#fff}
+.ticket .tt small{font-size:12px;opacity:.8;letter-spacing:.06em;text-transform:uppercase}
+.ticket .tt h3{font-size:19px;margin-top:4px}
+.ticket .perf{position:relative;height:0;border-top:2px dashed var(--b);margin:0 18px}
+.ticket .perf::before,.ticket .perf::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--bg)}
+.ticket .perf::before{left:-30px}.ticket .perf::after{right:-30px}
+.ticket .qr{display:flex;flex-direction:column;align-items:center;padding:18px}
+.ticket .qr small{font-size:13px;color:var(--m);margin-top:8px}
+.ticket dl{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 18px;margin:0}
+.ticket dt{font-size:12px;color:var(--m)}.ticket dd{margin:2px 0 0;font-size:15px;font-weight:600}
+.label{position:absolute;top:-34px;left:0;font-size:14px;font-weight:600;color:#3A4A44}
+.wrapS{position:relative}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="book" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5zM12 6.5v13"/></symbol>
+    <symbol id="apply" viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="back" viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></symbol>
+    <symbol id="share" viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></symbol>
+    <symbol id="mark" viewBox="0 0 24 24"><path d="M6 3.5h12V21l-6-4-6 4z"/></symbol>
+    <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></symbol>
+    <symbol id="tick" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.5"/></symbol>
+    <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+    <symbol id="campus" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-5h6v5"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+    <symbol id="filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+  </defs>
+</svg>
+<div class="board">
+
+<!-- 1 HOME -->
+<div class="screen" id="s-home">
+  <div class="top"><span class="logo"><i>A</i>ADYPU</span><span class="icbtn"><svg class="i"><use href="#bell"/></svg><span class="dot"></span></span></div>
+  <div class="scroll">
+    <h1>Find your path<br>at ADYPU</h1>
+    <div class="search"><svg class="i"><use href="#search"/></svg>Search programs, events, campus</div>
+    <div class="banner"><span class="ic"><svg class="i"><use href="#cal"/></svg></span><div><b>Admissions 2026 close 30 June</b><span>Start your application in 10 minutes →</span></div></div>
+    <div class="quick">
+      <div class="qa"><i><svg class="i"><use href="#book"/></svg></i>Programs</div>
+      <div class="qa"><i><svg class="i"><use href="#apply"/></svg></i>Apply</div>
+      <div class="qa"><i><svg class="i"><use href="#cal"/></svg></i>Events</div>
+      <div class="qa"><i><svg class="i"><use href="#campus"/></svg></i>Campus</div>
+    </div>
+    <div class="sechead"><h2>Popular programs</h2><a>See all</a></div>
+    <div class="hscroll">
+      <div class="pcard"><img src="img/complab.jpg" alt=""><div class="in"><span class="tag t-eng">Engineering</span><h3 style="margin-top:8px">B.Tech AI &amp; Data Science</h3><div class="facts"><span><svg class="i"><use href="#clock"/></svg>4 yrs</span><span><svg class="i"><use href="#pin"/></svg>Pune</span></div></div></div>
+      <div class="pcard"><img src="img/lab.jpg" alt=""><div class="in"><span class="tag t-des">Design</span><h3 style="margin-top:8px">B.Des User Experience</h3><div class="facts"><span><svg class="i"><use href="#clock"/></svg>4 yrs</span></div></div></div>
+    </div>
+  </div>
+  <nav class="nav"><a class="on"><svg class="i"><use href="#home"/></svg>Home</a><a><svg class="i"><use href="#book"/></svg>Programs</a><a><svg class="i"><use href="#apply"/></svg>Apply</a><a><svg class="i"><use href="#cal"/></svg>Events</a><a><svg class="i"><use href="#user"/></svg>Profile</a></nav>
+</div>
+
+<!-- 2 PROGRAMS -->
+<div class="screen" id="s-programs">
+  <div class="top"><h1 style="margin:0">Programs</h1><span class="icbtn"><svg class="i"><use href="#filter"/></svg></span></div>
+  <div class="scroll">
+    <div class="search"><svg class="i"><use href="#search"/></svg>Search 50+ programs</div>
+    <div class="chips"><span class="chip on">All</span><span class="chip">Engineering</span><span class="chip">Design</span><span class="chip">Management</span><span class="chip">Law</span></div>
+    <div class="count"><span>Showing <b>6 programs</b></span><span>Sort: Popular</span></div>
+    <div class="lcard"><div class="row"><span class="tag t-eng">Engineering</span><svg class="i save"><use href="#mark"/></svg></div><h3>B.Tech Artificial Intelligence &amp; Data Science</h3><div class="facts"><span><svg class="i"><use href="#clock"/></svg>4 years</span><span>Full-time</span><span>₹3.5L / yr</span></div><div class="foot">View program<svg class="i"><use href="#chev"/></svg></div></div>
+    <div class="lcard"><div class="row"><span class="tag t-des">Design</span><svg class="i save"><use href="#mark"/></svg></div><h3>B.Des User Experience Design</h3><div class="facts"><span><svg class="i"><use href="#clock"/></svg>4 years</span><span>Full-time</span></div><div class="foot">View program<svg class="i"><use href="#chev"/></svg></div></div>
+    <div class="lcard"><div class="row"><span class="tag t-man">Management</span><svg class="i save"><use href="#mark"/></svg></div><h3>MBA Business Analytics</h3><div class="facts"><span><svg class="i"><use href="#clock"/></svg>2 years</span><span>Full-time</span></div><div class="foot">View program<svg class="i"><use href="#chev"/></svg></div></div>
+  </div>
+  <nav class="nav"><a><svg class="i"><use href="#home"/></svg>Home</a><a class="on"><svg class="i"><use href="#book"/></svg>Programs</a><a><svg class="i"><use href="#apply"/></svg>Apply</a><a><svg class="i"><use href="#cal"/></svg>Events</a><a><svg class="i"><use href="#user"/></svg>Profile</a></nav>
+</div>
+
+<!-- 3 PROGRAM DETAIL -->
+<div class="screen" id="s-detail">
+  <div class="hero"><img src="img/complab.jpg" alt=""><div class="bar"><span class="icbtn"><svg class="i"><use href="#back"/></svg></span><span style="display:flex;gap:8px"><span class="icbtn"><svg class="i"><use href="#mark"/></svg></span><span class="icbtn"><svg class="i"><use href="#share"/></svg></span></span></div></div>
+  <div class="sheet">
+    <span class="tag t-eng">Engineering · Undergraduate</span>
+    <h2 style="margin-top:10px">B.Tech Artificial Intelligence &amp; Data Science</h2>
+    <div class="kf"><div><small>Duration</small><b>4 years</b></div><div><small>Format</small><b>Full-time</b></div><div><small>Campus</small><b>Pune</b></div><div><small>Tuition</small><b>₹3,50,000 / yr</b></div></div>
+    <div class="tabs"><span class="on">Overview</span><span>Curriculum</span><span>Careers</span></div>
+    <p class="para">Build the maths, computing and AI skills to design intelligent systems, with real-world projects.</p>
+    <h3 style="margin-top:14px">Eligibility</h3>
+    <div class="check"><svg class="i"><use href="#ok"/></svg>10+2 with Physics, Maths and Chemistry or Computer Science</div>
+    <div class="check"><svg class="i"><use href="#ok"/></svg>Minimum 60% aggregate in core subjects</div>
+  </div>
+  <div class="cta"><span class="btn s">Brochure</span><span class="btn p">Apply now</span></div>
+</div>
+
+<!-- 4 ADMISSIONS -->
+<div class="screen" id="s-admissions">
+  <div class="top"><h1 style="margin:0">Admissions 2026</h1></div>
+  <div class="scroll">
+    <p class="sub">Four steps, about 10 minutes to start. You can save and continue anytime.</p>
+    <div class="card" style="margin-top:16px">
+      <h3>Your path to ADYPU</h3>
+      <div class="timeline">
+        <div class="tl next"><b>1 · Submit the form</b><span>Personal and academic details</span><br><span class="when warn">Closes 30 Jun 2026</span></div>
+        <div class="tl"><b>2 · Upload documents</b><span>Mark sheets and ID proof</span></div>
+        <div class="tl"><b>3 · Entrance test</b><span>ADYPU online aptitude test</span><br><span class="when">15 Jul 2026</span></div>
+        <div class="tl" style="padding-bottom:0"><b>4 · Interview</b><span>Short personal interview with faculty</span></div>
+      </div>
+    </div>
+    <div class="schol"><svg class="i" style="width:34px;height:34px"><use href="#star"/></svg><div><b>Up to 100%</b><span>Merit scholarships for top performers</span></div></div>
+  </div>
+  <div class="cta"><span class="btn p">Start application</span></div>
+  <nav class="nav"><a><svg class="i"><use href="#home"/></svg>Home</a><a><svg class="i"><use href="#book"/></svg>Programs</a><a class="on"><svg class="i"><use href="#apply"/></svg>Apply</a><a><svg class="i"><use href="#cal"/></svg>Events</a><a><svg class="i"><use href="#user"/></svg>Profile</a></nav>
+</div>
+
+<!-- 5 FORM -->
+<div class="screen" id="s-form">
+  <div class="appbar"><span class="icplain"><svg class="i"><use href="#back"/></svg></span><span class="ttl">Application</span><span class="lnk">Save</span></div>
+  <div class="scroll">
+    <div class="steps"><i class="done"></i><i class="cur"></i><i></i><i></i></div>
+    <div class="steplbl"><span>Program</span><span class="on">Personal</span><span>Documents</span><span>Review</span></div>
+    <h2>Personal details</h2>
+    <div class="field"><label>Full name</label><div class="input filled">Ayush Kumar</div></div>
+    <div class="two">
+      <div class="field"><label>Date of birth</label><div class="input filled">14 / 03 / 2008</div></div>
+      <div class="field"><label>Nationality</label><div class="input filled">Indian</div></div>
+    </div>
+    <div class="field"><label>Gender</label><div class="seg"><span class="on">Male</span><span>Female</span><span>Other</span></div></div>
+    <div class="field"><label>Email</label><div class="input focus filled">ayush.kumar@example.com</div><p class="help">We'll send your application updates here.</p></div>
+    <div class="field"><label>Mobile number</label><div class="input error filled"><span class="pre">+91</span>98765 4321</div><p class="errtxt"><svg class="i"><use href="#alert"/></svg>Enter a 10-digit mobile number</p></div>
+  </div>
+  <div class="cta" style="flex-direction:column;gap:0"><span class="btn p full">Continue</span><span class="ghost" style="margin-top:4px">Save as draft</span></div>
+</div>
+
+<!-- 6 SUBMITTED -->
+<div class="screen" id="s-submitted">
+  <div class="appbar"><span class="icplain"></span><span class="ttl"></span><span class="icplain"></span></div>
+  <div class="scroll">
+    <div class="success">
+      <div class="tick"><i><svg class="i" style="width:32px;height:32px;stroke-width:2.6"><use href="#tick"/></svg></i></div>
+      <h1 style="margin-bottom:8px">Application submitted</h1>
+      <p class="sub">Thank you, Ayush. Your application for B.Tech AI &amp; Data Science is under review.</p>
+    </div>
+    <div class="ref"><div><small>Reference ID</small><b>ADY-9821</b></div><span class="copy"><svg class="i" style="width:18px;height:18px"><use href="#copy"/></svg>Copy</span></div>
+    <div class="card">
+      <h3>What happens next</h3>
+      <div class="timeline">
+        <div class="tl done"><b>Application received</b><span>We'll reply within 5 working days</span></div>
+        <div class="tl next"><b>Entrance test</b><span>Online aptitude test</span><br><span class="when">15 Jul 2026 · Add to calendar</span></div>
+        <div class="tl" style="padding-bottom:0"><b>Interview &amp; decision</b><span>We'll email you a slot</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta" style="flex-direction:column;gap:0"><span class="btn p full">View test details</span><span class="ghost" style="margin-top:4px">Go to student dashboard</span></div>
+</div>
+
+<!-- 7 EVENTS -->
+<div class="screen" id="s-events">
+  <div class="top"><h1 style="margin:0">Campus events</h1><span class="icbtn"><svg class="i"><use href="#search"/></svg></span></div>
+  <div class="scroll">
+    <div class="chips" style="margin-top:0"><span class="chip on">All</span><span class="chip">Workshops</span><span class="chip">Webinars</span><span class="chip">Seminars</span></div>
+    <div class="feat"><img src="img/robotics.jpg" alt=""><div class="in"><span class="tag">Featured · Seminar</span><h3>Engineering Open House 2026</h3><div class="meta"><span>Wed, 5 Aug · 10:00 AM</span><span>Free</span></div><div class="seats"><span class="barx"><i></i></span>45 seats left</div></div></div>
+    <div class="sechead" style="margin-top:20px"><h2>Upcoming</h2><a>Calendar</a></div>
+    <div class="evrow"><div class="date"><small>OCT</small><b>18</b></div><div><h3>Design Symposium</h3><div class="meta">Workshop · 10:00 AM – 4:00 PM</div></div><svg class="i chev"><use href="#chev"/></svg></div>
+    <div class="evrow"><div class="date"><small>OCT</small><b>22</b></div><div><h3>Startup Pitch Day</h3><div class="meta">Pitch · 2:00 – 5:00 PM</div></div><svg class="i chev"><use href="#chev"/></svg></div>
+  </div>
+  <nav class="nav"><a><svg class="i"><use href="#home"/></svg>Home</a><a><svg class="i"><use href="#book"/></svg>Programs</a><a><svg class="i"><use href="#apply"/></svg>Apply</a><a class="on"><svg class="i"><use href="#cal"/></svg>Events</a><a><svg class="i"><use href="#user"/></svg>Profile</a></nav>
+</div>
+
+<!-- 8 TICKET -->
+<div class="screen" id="s-ticket">
+  <div class="appbar"><span class="icplain"><svg class="i"><use href="#back"/></svg></span><span class="ttl">Your ticket</span><span class="icplain"><svg class="i"><use href="#share"/></svg></span></div>
+  <div class="scroll">
+    <h1 style="margin:8px 0 6px">You're registered!</h1>
+    <p class="sub">We've also emailed this ticket to you.</p>
+    <div class="ticket">
+      <div class="tt"><small>Seminar · Free</small><h3>Engineering Open House 2026</h3></div>
+      <dl><div><dt>Date</dt><dd>Wed, 5 Aug 2026</dd></div><div><dt>Time</dt><dd>10:00 AM – 4:00 PM</dd></div><div><dt>Venue</dt><dd>ADYPU SOD Building</dd></div><div><dt>Ticket ID</dt><dd>#AD-8892V</dd></div></dl>
+      <div class="perf"></div>
+      <div class="qr"><svg id="qr" width="150" height="150" viewBox="0 0 29 29" shape-rendering="crispEdges" aria-label="Entry QR code"></svg><small>Show this at the registration desk</small></div>
+    </div>
+  </div>
+  <div class="cta"><span class="btn s"><svg class="i"><use href="#cal"/></svg>Add to calendar</span><span class="btn p">Done</span></div>
+</div>
+
+</div>
+<script>
+/* deterministic QR-style pattern (visual placeholder) */
+(() => {
+  const s = document.getElementById('qr'); let seed = 7, out = '';
+  const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#12201C"/><rect x="${x+1}" y="${y+1}" width="5" height="5" fill="#fff"/><rect x="${x+2}" y="${y+2}" width="3" height="3" fill="#12201C"/>`;
+  const inF = (x, y) => (x < 8 && y < 8) || (x > 20 && y < 8) || (x < 8 && y > 20);
+  for (let y = 0; y < 29; y++) for (let x = 0; x < 29; x++) if (!inF(x, y) && rnd() > .52) out += `<rect x="${x}" y="${y}" width="1" height="1" fill="#12201C"/>`;
+  s.innerHTML = `<rect width="29" height="29" fill="#fff"/>` + out + finder(0,0) + finder(22,0) + finder(0,22);
+})();
+</script>
+</body>
+</html>

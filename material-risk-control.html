@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Material Risk Control — Case study · Adya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/case.css">
+<script>document.documentElement.classList.add("js")</script>
+
+<style>
+:root{--acc:#9C7400;--accSoft:#FFF0C2;--heroBg:#1A1412;--heroAcc:#FFD966;--ai:#9C7400}
+[data-theme="dark"]{--acc:#FFD966;--accSoft:#3A2F12}
+.hero .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(180deg,#000 40%,transparent);-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent)}
+.hero .glow{position:absolute;width:820px;height:820px;left:50%;top:30%;margin-left:-410px;border-radius:50%;background:radial-gradient(circle,rgba(255,217,102,.28),transparent 65%)}
+.stage{display:flex;justify-content:center;height:auto;padding-bottom:0}
+.monitor{width:min(980px,100%);border-radius:14px 14px 0 0;background:#2A211D;padding:12px 12px 0;box-shadow:0 -10px 80px -20px rgba(255,217,102,.35);transform:translateY(20px);transition:transform .8s cubic-bezier(.2,.9,.3,1)}
+.stage:hover .monitor{transform:translateY(0)}
+.monitor img{border-radius:6px 6px 0 0}
+.fl{position:absolute;background:#fff;color:#101828;border-radius:14px;padding:12px 16px;font-size:13px;line-height:1.4;box-shadow:0 20px 40px -18px rgba(0,0,0,.5);max-width:220px;animation:bob 6s ease-in-out infinite}
+.fl small{display:block;font-family:var(--mono);font-size:11px;color:var(--ai);margin-bottom:4px}
+.fl b{display:block;font-size:15px}
+.fl1{left:4%;top:24%}.fl2{right:4%;top:8%;animation-delay:-3s}.fl2 small{color:#C8331E}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.wf{display:flex;flex-wrap:wrap;gap:6px}
+.wf span{font-size:13px;padding:8px 12px;border-radius:10px;background:var(--card)}
+.wf span.c{background:#FEF3F2;color:#B42318}
+[data-theme="dark"] .wf span.c{background:rgba(217,45,32,.15);color:#FDA29B}
+.loop{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.loop span{font-weight:600;font-size:15px;padding:12px 16px;border-radius:12px;background:var(--accSoft);color:#1A1412}
+[data-theme="dark"] .loop span{color:var(--ink)}
+.loop span.h{background:#1A1412;color:#FFD966}
+.loop em{font-style:normal;color:var(--muted)}
+.paper{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:15px;line-height:1.45}
+.paper:first-child{border-top:0}
+.paper span{font-family:var(--mono);font-size:12px;color:var(--acc)}
+.paper a{color:var(--muted);font-size:13px}
+.dd{width:100%;height:auto;display:block}
+.dd polygon{fill:none;stroke-width:2}
+.dd .d1{stroke:var(--acc);fill:color-mix(in srgb,var(--acc) 8%,transparent)}
+.dd .d2{stroke:var(--ai);fill:color-mix(in srgb,var(--ai) 8%,transparent)}
+.dd text{font:600 22px var(--sans);fill:var(--ink);text-anchor:middle}
+.dd line{stroke:var(--line);stroke-width:2;stroke-dasharray:4 6}
+.mc{padding:18px;border-radius:16px;background:var(--card);border-top:4px solid var(--c)}
+.mc h4{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--c);margin:0 0 10px}
+.mc ul{margin:0;padding-left:18px;font-size:14px;line-height:1.7}
+.rk{border-radius:14px;padding:14px;color:#fff;font-family:var(--mono);font-size:11px;min-height:80px;display:flex;flex-direction:column;justify-content:flex-end}
+.rk b{font-family:var(--sans);font-size:15px}
+@media (max-width:760px){.fl{display:none}.paper{grid-template-columns:1fr;gap:2px}.dd text{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><i></i>Adya</a>
+    <nav class="links" aria-label="Main">
+      <a class="br" href="index.html#work"><span class="b">[</span>← All work<span class="b">]</span></a>
+      <a class="br hide-sm" href="index.html#about"><span class="b">[</span>About<span class="b">]</span></a>
+      <button class="tog" id="tog" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="k" aria-hidden="true">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<header class="hero">
+  <div class="bgfx" aria-hidden="true"><div class="grid"></div><div class="glow"></div></div>
+  <div class="wrap">
+    <p class="eyebrow">Case study 02 · Enterprise SaaS · AI</p>
+    <h1>Material Risk <em>Control</em></h1>
+    <p class="lede">A decision tool that helps plant managers stop material shortages before they stop production.</p>
+  </div>
+  <div class="hero-visual stage">
+    <div class="monitor"><img src="images/mrc/v2-1-overview.jpg" alt="Material risk overview dashboard" width="2160" height="1382"></div>
+    <div class="fl fl1"><small>AI recommends</small><b>Expedite PO #45821</b>Protects 3 production orders.</div>
+    <div class="fl fl2"><small>● Critical · 92</small><b>SKU-482</b>Shortage in 6 days</div>
+  </div>
+</header>
+
+<section class="overview">
+  <div class="wrap">
+    <dl class="meta">
+      <div><dt>Role</dt><dd>UX research &amp; product design</dd></div>
+      <div><dt>Type</dt><dd>Concept · Enterprise SaaS</dd></div>
+      <div><dt>User</dt><dd>Plant materials manager</dd></div>
+      <div><dt>Tools</dt><dd>Figma, Figma Make, Keynote</dd></div>
+    </dl>
+    <div class="tldr">
+      <div><p class="k">Problem</p><p>Plant managers <b>spot material shortages too late</b>, because they check 6 signals by hand across different systems.</p></div>
+      <div style="--c:#9C7400"><p class="k">Solution</p><p>A <b>SKU-level decision workflow</b>: see the risk, why it matters and the AI's suggested action, then <b>a human approves</b>.</p></div>
+      <div style="--c:#067647"><p class="k">Outcome</p><p><b>11 manual steps → 1 loop</b> across 7 connected screens, with explainable AI, an audit trail and KPIs to measure it.</p></div>
+    </div>
+    <p class="sub-h">My process · click a stage to jump to it</p>
+    <div class="process" aria-label="My process"><button type="button" data-start="0"><small>01 · Empathise</small><b>Problem</b><span>11 steps before one answer</span></button><button type="button" data-start="1"><small>02 · Research</small><b>Research</b><span>Papers, competitors, personas, empathy map</span></button><button type="button" data-start="2"><small>03 · Define</small><b>Define</b><span>Journey map, JTBD, scope</span></button><button type="button" data-start="3"><small>04 · Ideate</small><b>Ideate</b><span>Double Diamond, MoSCoW, user flow</span></button><button type="button" data-start="4"><small>05 · Prototype</small><b>Solution</b><span>7 connected, clickable screens</span></button><button type="button" data-start="5"><small>06 · Test</small><b>Test & outcome</b><span>Test plan, KPIs, learnings</span></button></div>
+    <div class="pfiles"><a href="figma-source/mrc/research.html" target="_blank" rel="noopener">Full research board ↗</a><a class="fig" href="https://www.figma.com/design/S78MfCis4Sqc5ntNYsYcMW/Portfolio" target="_blank" rel="noopener">Open Figma file ↗</a></div>
+  </div>
+</section>
+
+<div class="stepper-wrap">
+  <div class="wrap">
+    <div class="stepper" role="tablist" aria-label="Case study steps">
+      <button type="button" role="tab" data-go data-title="Problem"><i>01</i><span>Problem</span></button>
+      <button type="button" role="tab" data-go data-title="Research"><i>02</i><span>Research</span></button>
+      <button type="button" role="tab" data-go data-title="Define"><i>03</i><span>Define</span></button>
+      <button type="button" role="tab" data-go data-title="Ideate"><i>04</i><span>Ideate</span></button>
+      <button type="button" role="tab" data-go data-title="Prototype"><i>05</i><span>Solution &amp; prototype</span></button>
+      <button type="button" role="tab" data-go data-title="Test &amp; outcome"><i>06</i><span>Test &amp; outcome</span></button>
+    </div>
+  </div>
+  <div class="sbar"><i></i></div>
+</div>
+
+<main class="panels">
+  <div class="wrap">
+
+  <!-- 01 -->
+  <section class="panel" data-step="1" aria-label="Step 1: Problem">
+    <div class="ph"><span class="n">01 / 06</span><h2>Eleven steps before <em>one answer</em>.</h2></div>
+    <div class="pstate"><span>Problem statement</span><b>Plant managers spot material shortages too late</b>, because they check 6 signals by hand across different systems.</div>
+    <div class="split">
+      <div>
+        <p class="quote">Don't design a dashboard. <em>Design a decision.</em></p>
+        <p class="lead">Today a manager pieces risk together by hand. The risk alone doesn't say <b>what to do next</b>.</p>
+      </div>
+      <div>
+        <p class="sub-h" style="margin-top:0">Today · 11 steps, 6 of them manual checks</p>
+        <div class="wf"><span>Detect risk</span><span class="c">Check inventory</span><span class="c">Check consumption</span><span class="c">Check safety stock</span><span class="c">Check open PO</span><span class="c">Check supplier ETA</span><span class="c">Check production need</span><span>Assess impact</span><span>Decide</span><span>Coordinate</span><span>Monitor</span></div>
+        <p class="cap"><span style="color:#B42318">Red</span> = the 6 manual checks done across different systems, which my design joins up automatically. Grey = steps that stay with the manager.</p>
+        <p class="sub-h">My goal · one loop</p>
+        <div class="loop"><span>Detect</span><em>→</em><span>Explain</span><em>→</em><span>Prioritise</span><em>→</em><span class="h">Decide</span><em>→</em><span>Act</span><em>→</em><span>Verify</span></div>
+        <p class="cap">The AI joins up the checks; the manager keeps the decision (dark).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="panel" data-step="2" aria-label="Step 2: Research">
+    <div class="ph"><span class="n">02 / 06</span><h2>Grounded in <em>evidence</em>.</h2></div>
+    <p class="sub-h" style="margin-top:0">How I researched</p><div class="methods"><div class="method"><i>01</i><b>Literature review</b><span>5 academic papers on shortages, stockouts and explainable AI.</span></div><div class="method"><i>02</i><b>Competitive analysis</b><span>SAP IBP and Blue Yonder: strengths and the gap.</span></div><div class="method"><i>03</i><b>Workflow mapping</b><span>The current process mapped: 11 steps, 6 manual checks.</span></div><div class="method"><i>04</i><b>JTBD + proto-personas</b><span>The job to be done, and the 2 roles involved.</span></div></div><p class="sub-h">Who I'm designing for</p><div class="pgrid"><div class="pcard"><div class="who"><span class="av" style="background:#1A1412">D</span><div><b>Dana Keller, 41 · Materials Manager</b><span>Primary user · Plant 01, Detroit</span></div><span class="tag">Proto-persona</span></div><q>By the time I've checked every system, the line is already at risk.</q><div class="cols"><div><h5>Goals</h5><ul><li>Keep production running without over-stocking</li><li>Act early, with confidence</li></ul></div><div><h5>Frustrations</h5><ul><li>6 checks across ERP, spreadsheets and email</li><li>Alerts say what's wrong, not what to do</li></ul></div></div><div class="need"><b>Needs</b>One ranked view with the reason and a suggested action, while she stays in control.</div></div><div class="pcard"><div class="who"><span class="av" style="background:#9C7400">T</span><div><b>Tom Rivera, 33 · Production Planner</b><span>Secondary user · Plant 01</span></div><span class="tag">Proto-persona</span></div><q>I need to know which orders are hit before I reshuffle the schedule.</q><div class="cols"><div><h5>Goals</h5><ul><li>Protect delivery dates</li><li>Plan around shortages early</li></ul></div><div><h5>Frustrations</h5><ul><li>Hears about shortages late, by email</li><li>No shared view with the materials team</li></ul></div></div><div class="need"><b>Needs</b>Production impact for each SKU, and a shared log of decisions.</div></div></div><p class="cap">Proto-personas: built from my desk research and context, not interviews yet. Next step: validate them with 5 user interviews.</p><p class="sub-h">Empathy map · Dana, materials manager</p><div class="empathy"><div><h5>Says</h5><p>"Which SKU will stop my line first?"</p></div><div><h5>Thinks</h5><p>"If I miss one signal, production stops and it's on me."</p></div><div><h5>Does</h5><p>Checks the ERP and spreadsheets, emails suppliers, calls planners, and keeps notes in her own sheet.</p></div><div><h5>Feels</h5><p>Under pressure and always reacting. Doesn't fully trust alerts she can't see the reason for.</p></div><span class="mid">D</span></div><p class="sub-h">Research synthesis · affinity map</p><div class="affinity"><div class="col"><h5>Signals are scattered</h5><div class="sticky">6 checks before every decision<small>workflow map</small></div><div class="sticky">Data split across ERP, sheets and email<small>workflow map</small></div><div class="sticky">All of it checked by hand<small>workflow map</small></div><div class="ins"><b>Insight</b>Bring the signals into one place.</div></div><div class="col"><h5>Timing is everything</h5><div class="sticky">Shortages starve and block lines<small>ElMaraghy 2022</small></div><div class="sticky">Stock + near-term demand predict stockouts<small>Liu 2025</small></div><div class="sticky">Earlier action = fewer stoppages<small>Hafaf 2026</small></div><div class="ins"><b>Insight</b>Show "days until shortage" first.</div></div><div class="col"><h5>Trust in AI</h5><div class="sticky">Explainable interfaces build trust<small>Procedia CS 2024</small></div><div class="sticky">Managers must see the reason<small>JTBD</small></div><div class="sticky">People stay accountable for decisions<small>scope</small></div><div class="ins"><b>Insight</b>AI recommends, humans decide.</div></div><div class="col"><h5>Market gap</h5><div class="sticky">SAP IBP: network-wide planning<small>competitor review</small></div><div class="sticky">Blue Yonder: enterprise scale<small>competitor review</small></div><div class="sticky">Nothing for one urgent SKU decision<small>gap analysis</small></div><div class="ins"><b>Insight</b>Design for one plant, one SKU, one decision.</div></div></div><p class="cap">Sticky notes from my secondary research, 5 papers, competitor review and workflow mapping, grouped into themes (affinity mapping). Interviews will add direct user quotes.</p>
+<p class="sub-h">What the evidence says</p>
+    <div class="split">
+      <div>
+        <p class="lead">I reviewed <b>5 academic sources</b> and benchmarked <b>SAP IBP</b> and <b>Blue Yonder</b>.</p>
+        <div class="paper"><span>2012</span><div>SKU classification is a real operations construct. <a href="https://doi.org/10.1108/01443571211250112">van Kampen et al.</a></div></div>
+        <div class="paper"><span>2022</span><div>Shortages starve and block production lines. <a href="https://doi.org/10.1016/j.procir.2022.05.093">ElMaraghy et al.</a></div></div>
+        <div class="paper"><span>2025</span><div>Inventory + near-term demand best predict stockouts. <a href="https://doi.org/10.1016/j.jdec.2025.06.002">Liu et al.</a></div></div>
+        <div class="paper"><span>2024</span><div>Explainable AI interfaces build trust. <a href="https://doi.org/10.1016/j.procs.2024.02.127">Procedia CS</a></div></div>
+        <div class="paper"><span>2026</span><div>Causal + predictive models enable earlier action. <a href="https://doi.org/10.1371/journal.pone.0350429">Hafaf et al.</a></div></div>
+      </div>
+      <div>
+        <p class="sub-h" style="margin-top:0">What the research changed</p>
+        <div class="rows">
+          <div class="row2"><div class="a">Research supports SKU-level classification</div><div class="ar">→</div><div class="b">The SKU is the main unit, not a generic dashboard</div></div>
+          <div class="row2"><div class="a">Shortages spread into production</div><div class="ar">→</div><div class="b">Timing is always shown with production impact</div></div>
+          <div class="row2"><div class="a">Users need interpretable AI</div><div class="ar">→</div><div class="b">Every AI suggestion shows its reasons and evidence</div></div>
+        </div>
+        <div class="callout"><span>The gap</span>SAP and Blue Yonder serve network-wide planning. Nobody focuses on <b>one plant manager making one urgent decision about one SKU</b>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="panel" data-step="3" aria-label="Step 3: Define">
+    <div class="ph"><span class="n">03 / 06</span><h2>One plant. One SKU. <em>One decision.</em></h2></div>
+<p class="sub-h">Current journey · handling a shortage risk</p><div class="jmap"><div class="jr"><div>Stage</div><div class="st">Notice</div><div class="st">Gather</div><div class="st">Assess</div><div class="st">Decide</div><div class="st">Follow up</div></div><div class="jr"><div>Doing</div><div class="">Gets a late or noisy alert</div><div class="">Checks 6 signals in different systems</div><div class="">Works out which orders are hit</div><div class="">Picks an action on gut feel</div><div class="">Emails, calls, chases updates</div></div><div class="jr"><div>Feeling</div><div class="emo" style="grid-column:2/-1"><svg viewBox="0 0 500 64" preserveAspectRatio="none"><polyline points="50,38 150,52 250,52 350,38 450,52" fill="none" stroke="var(--acc)" stroke-width="2.5" vector-effect="non-scaling-stroke"/><circle cx="50" cy="38" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="150" cy="52" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="250" cy="52" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="350" cy="38" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/><circle cx="450" cy="52" r="5" fill="var(--acc)" vector-effect="non-scaling-stroke"/></svg></div></div><div class="jr"><div>Pain points</div><div class="pain">Alerts come late, with no priority</div><div class="pain">6 systems, all checked by hand</div><div class="pain">Production impact is unclear</div><div class="pain">No options compared, no AI help</div><div class="pain">No shared tracker or audit trail</div></div><div class="jr"><div>Opportunity</div><div class="opp">Ranked risk list</div><div class="opp">One SKU view with the evidence</div><div class="opp">Impact shown for each SKU</div><div class="opp">AI options + human approval</div><div class="opp">Actions tracker + resolved log</div></div></div>
+    <p class="sub-h">The job to be done</p>
+    <div class="callout" style="margin-top:0;font-size:clamp(18px,1.8vw,22px);line-height:1.5"><span>Job to be done</span><b>When</b> I need to keep materials available for production, <b>I want to</b> see the highest-risk SKUs and why they matter, <b>so I can</b> prevent shortages without over-stocking.</div>
+    <div class="grid4" style="margin-top:14px">
+      <div class="tile"><p class="k">Functional</p><p>Detect risk and know when to step in.</p></div>
+      <div class="tile"><p class="k">Contextual</p><p>Understand timing, cause and impact.</p></div>
+      <div class="tile"><p class="k">Decision</p><p>Compare options and choose.</p></div>
+      <div class="tile" style="--acc:#9C7400"><p class="k">Trust</p><p>Know why the AI suggested it.</p></div>
+    </div>
+    <p class="sub-h">Out of scope, on purpose</p>
+    <div class="chips"><span class="chip x">Network planning</span><span class="chip x">Warehouse management</span><span class="chip x">Finished goods</span><span class="chip x">ERP replacement</span><span class="chip x">Autonomous purchasing</span></div>
+  </section>
+
+  <!-- 04 -->
+  <section class="panel" data-step="4" aria-label="Step 4: Ideate">
+    <div class="ph"><span class="n">04 / 06</span><h2>From evidence <em>to priorities</em>.</h2></div>
+    <svg class="dd" viewBox="0 0 1200 200" role="img" aria-label="Double Diamond: Discover, Define, Develop, Deliver">
+      <polygon class="d1" points="14,100 300,10 586,100 300,190"/><polygon class="d2" points="614,100 900,10 1186,100 900,190"/>
+      <line x1="300" y1="10" x2="300" y2="190"/><line x1="900" y1="10" x2="900" y2="190"/>
+      <text x="172" y="108">Discover</text><text x="428" y="108">Define</text><text x="772" y="108">Develop</text><text x="1028" y="108">Deliver</text>
+    </svg>
+    <p class="cap" style="text-align:center">I followed the Double Diamond: steps 02–03 above, then prioritised and designed below.</p>
+<p class="sub-h">Ideas I explored, and why</p><div class="ideas"><div class="idea drop"><span class="chip2">Dropped</span><b>A classic analytics dashboard</b><p><i>Why I dropped it</i>Shows lots of data but doesn't say what to do next.</p></div><div class="idea drop"><span class="chip2">Dropped</span><b>Fully automatic AI ordering</b><p><i>Why I dropped it</i>Managers lose control and accountability. Low trust.</p></div><div class="idea drop"><span class="chip2">Dropped</span><b>Email alerts only</b><p><i>Why I dropped it</i>No context, no comparison of options, easy to miss.</p></div><div class="idea pick"><span class="chip2">Chosen</span><b>SKU-level decision workflow</b><p><i>Why I chose it</i>Ranked risks, the reason, AI options, and a human approve button. Fast and trusted.</p></div></div>
+    <p class="sub-h">MoSCoW: saying no kept it focused</p>
+    <div class="grid4">
+      <div class="mc" style="--c:#D92D20"><h4>MUST</h4><ul><li>SKU risk + timing</li><li>Production impact</li><li>Action options</li><li>Human approval</li></ul></div>
+      <div class="mc" style="--c:#E8590C"><h4>SHOULD</h4><ul><li>AI recommendation</li><li>Confidence / evidence</li><li>Decision history</li></ul></div>
+      <div class="mc" style="--c:#6B5F59"><h4>COULD</h4><ul><li>Scenario comparison</li><li>Deeper analytics</li></ul></div>
+      <div class="mc" style="--c:#5B6576"><h4>WON'T</h4><ul><li>ERP replacement</li><li>Autonomous buying</li></ul></div>
+    </div>
+<p class="sub-h">User flow I designed</p><div class="uflow"><span class="s">Overview</span><em>→</em><span class="">Open riskiest SKU</span><em>→</em><span class="">Why it's at risk</span><em>→</em><span class="">Affected orders</span><em>→</em><span class="d">Approve, modify or reject</span><em>→</em><span class="">Actions tracker</span><em>→</em><span class="s">Resolved + reports</span></div><p class="cap">Dark = start and end · dashed = decision point</p>
+    <div class="callout"><span>AI + human principle</span>AI does the joining up. <b>People decide.</b> Every suggestion can be approved, modified or rejected, and is logged.</div>
+  </section>
+
+  <!-- 05 -->
+  <section class="panel" data-step="5" aria-label="Step 5: Solution and prototype">
+    <div class="ph"><span class="n">05 / 06</span><h2>Make the decision <em>yourself</em>.</h2></div>
+    <div class="proto desk" data-proto data-demo='["Open SKU-482","Approve","Reports"]'>
+      <script type="application/json">{"start": "overview", "screens": {"overview": {"src": "images/mrc/v2-1-overview.jpg", "name": "Overview", "hs": [[0, 8.8, 0, 16.67, "overview", "Home"], [10.32, 4.35, 0.83, 15, "overview", "Overview"], [14.99, 4.35, 0.83, 15, "risks", "Material Risks"], [19.66, 4.35, 0.83, 15, "actions", "Actions"], [24.33, 4.35, 0.83, 15, "suppliers", "Suppliers"], [29, 4.35, 0.83, 15, "resolved", "Resolved"], [33.67, 4.35, 0.83, 15, "reports", "Reports"], [1.47, 4.35, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [2.34, 2.61, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.58, 4.13, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [16.19, 4.56, 84.62, 7.18, "toast:Updated just now", "Refresh"], [16.19, 4.56, 92.49, 5.29, "toast:Filter by risk, line or supplier", "Filters"], [23.14, 14.56, 18.89, 18.99, "risks", "Critical risks"], [42.36, 4.56, 89, 7.18, "risks", "View all"], [57.04, 1.85, 28.49, 3.79, "sku", "Open SKU-482"], [63.88, 1.85, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-119"], [70.73, 1.85, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-731"], [77.57, 1.85, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-341"], [84.41, 1.85, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-258"], [91.26, 1.85, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-663"]]}, "risks": {"src": "images/mrc/v2-2-risks.jpg", "name": "Material risks", "hs": [[0, 9, 0, 16.67, "overview", "Home"], [10.56, 4.44, 0.83, 15, "overview", "Overview"], [15.33, 4.44, 0.83, 15, "risks", "Material Risks"], [20.11, 4.44, 0.83, 15, "actions", "Actions"], [24.89, 4.44, 0.83, 15, "suppliers", "Suppliers"], [29.67, 4.44, 0.83, 15, "resolved", "Resolved"], [34.44, 4.44, 0.83, 15, "reports", "Reports"], [1.5, 4.44, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [2.39, 2.67, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.61, 4.22, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [16.56, 4.67, 86.35, 5.29, "toast:Filter by risk, line or supplier", "Filter risks"], [16.56, 4.67, 92.33, 5.45, "toast:Risk list exported (sample)", "Export risks"], [38.28, 1.89, 28.49, 3.79, "sku", "Open SKU-482"], [45.28, 1.89, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-119"], [52.28, 1.89, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-731"], [59.28, 1.89, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-341"], [66.28, 1.89, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-258"], [73.28, 1.89, 28.49, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Open SKU-663"]]}, "sku": {"src": "images/mrc/v2-3-sku.jpg", "name": "SKU-482 detail", "hs": [[0, 5.64, 0, 16.67, "overview", "Home"], [6.61, 2.78, 0.83, 15, "overview", "Overview"], [9.61, 2.78, 0.83, 15, "risks", "Material Risks"], [12.6, 2.78, 0.83, 15, "actions", "Actions"], [15.59, 2.78, 0.83, 15, "suppliers", "Suppliers"], [18.58, 2.78, 0.83, 15, "resolved", "Resolved"], [21.58, 2.78, 0.83, 15, "reports", "Reports"], [0.94, 2.78, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [1.5, 1.67, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.01, 2.64, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [6.82, 1.11, 18.89, 7, "risks", "Material Risks breadcrumb"], [12.67, 2.92, 89.12, 8.65, "risks", "Back to list"], [90.46, 3.48, 22.15, 8.93, "actions", "Approve"], [90.46, 3.48, 31.77, 7.01, "toast:Adjust quantity or date, then approve", "Modify"], [90.46, 3.48, 39.48, 6.62, "toast:Rejections need a reason and are logged", "Reject"]]}, "actions": {"src": "images/mrc/v2-4-actions.jpg", "name": "Actions", "hs": [[0, 8.79, 0, 16.67, "overview", "Home"], [10.3, 4.34, 0.83, 15, "overview", "Overview"], [14.97, 4.34, 0.83, 15, "risks", "Material Risks"], [19.63, 4.34, 0.83, 15, "actions", "Actions"], [24.3, 4.34, 0.83, 15, "suppliers", "Suppliers"], [28.96, 4.34, 0.83, 15, "resolved", "Resolved"], [33.62, 4.34, 0.83, 15, "reports", "Reports"], [1.46, 4.34, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [2.33, 2.6, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.57, 4.12, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [53.04, 1.84, 53.94, 3.79, "sku", "Open SKU-482 action"], [71.64, 1.84, 53.94, 3.79, "toast:SKU-482 is the fully designed path in this prototype", "Review pending"]]}, "suppliers": {"src": "images/mrc/v2-5-suppliers.jpg", "name": "Suppliers", "hs": [[0, 8.24, 0, 16.67, "overview", "Home"], [9.66, 4.07, 0.83, 15, "overview", "Overview"], [14.03, 4.07, 0.83, 15, "risks", "Material Risks"], [18.4, 4.07, 0.83, 15, "actions", "Actions"], [22.77, 4.07, 0.83, 15, "suppliers", "Suppliers"], [27.15, 4.07, 0.83, 15, "resolved", "Resolved"], [31.52, 4.07, 0.83, 15, "reports", "Reports"], [1.37, 4.07, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [2.19, 2.44, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.47, 3.86, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [15.15, 4.27, 92.33, 5.45, "toast:Supplier list exported (sample)", "Export suppliers"], [38.23, 2.64, 85.05, 3.87, "toast:Sorted by delay", "Sort by delay"], [38.23, 2.64, 89.34, 6.84, "toast:Sorted by reliability", "Sort by reliability"], [51.71, 2.44, 33.12, 4.61, "sku", "Open SKU-482 from suppliers"]]}, "resolved": {"src": "images/mrc/v2-6-resolved.jpg", "name": "Resolved", "hs": [[0, 9, 0, 16.67, "overview", "Home"], [10.56, 4.44, 0.83, 15, "overview", "Overview"], [15.33, 4.44, 0.83, 15, "risks", "Material Risks"], [20.11, 4.44, 0.83, 15, "actions", "Actions"], [24.89, 4.44, 0.83, 15, "suppliers", "Suppliers"], [29.67, 4.44, 0.83, 15, "resolved", "Resolved"], [34.44, 4.44, 0.83, 15, "reports", "Reports"], [1.5, 4.44, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [2.39, 2.67, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.61, 4.22, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [16.56, 4.67, 92.33, 5.45, "toast:Resolution history exported (sample)", "Export history"], [54.23, 6.33, 18.96, 78.75, "toast:Resolution detail for SKU-119 (sample)", "Resolution SKU-119"], [60.57, 6.33, 18.96, 78.75, "toast:Resolution detail for SKU-341 (sample)", "Resolution SKU-341"], [66.9, 6.33, 18.96, 78.75, "toast:Resolution detail for SKU-205 (sample)", "Resolution SKU-205"], [73.23, 6.33, 18.96, 78.75, "toast:Resolution detail for SKU-889 (sample)", "Resolution SKU-889"], [79.57, 6.28, 18.96, 78.75, "toast:Resolution detail for SKU-412 (sample)", "Resolution SKU-412"]]}, "reports": {"src": "images/mrc/v2-7-reports.jpg", "name": "Reports", "hs": [[0, 7.06, 0, 16.67, "overview", "Home"], [8.28, 3.49, 0.83, 15, "overview", "Overview"], [12.03, 3.49, 0.83, 15, "risks", "Material Risks"], [15.77, 3.49, 0.83, 15, "actions", "Actions"], [19.52, 3.49, 0.83, 15, "suppliers", "Suppliers"], [23.27, 3.49, 0.83, 15, "resolved", "Resolved"], [27.01, 3.49, 0.83, 15, "reports", "Reports"], [1.18, 3.49, 18.89, 10.28, "toast:Plant 01 \u2014 Detroit is the active context", "Switch plant"], [1.87, 2.09, 92.5, 1.39, "toast:3 critical risks need attention", "Notifications"], [1.26, 3.31, 95.14, 2.64, "toast:Dana Keller \u00b7 Materials Manager", "Profile"], [12.98, 3.66, 90.18, 7.59, "toast:Report exported as PDF (sample)", "Export report"]]}}}</script>
+      <div class="pdev desk-d"><div class="bar"><i></i><i></i><i></i></div><div class="pscr" style="aspect-ratio:16/9"><div class="pview"><img alt=""></div></div><div class="ptoast" role="status"></div></div>
+      <div class="pctl" style="flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px">
+        <p class="now">Now viewing<b>Overview</b></p>
+        <p class="lead" style="margin:0;font-size:15px;flex-basis:100%;order:3">Everything in the sidebar works: try Material Risks, Suppliers, Resolved and Reports.</p>
+        <div class="pbtns"><button class="pb on" type="button" data-play>❚❚ Pause demo</button><button class="pb" type="button" data-back>← Back</button><button class="pb" type="button" data-restart>Restart</button></div>
+      </div>
+    </div>
+    <div class="grid4" style="margin-top:28px">
+      <div class="tile line"><p class="k">01 · Overview</p><p>Risks ranked by score and production impact, with the AI's suggested action on every row.</p></div>
+      <div class="tile line"><p class="k">02 · SKU detail</p><p>Answer first: "Shortage in 6 days", then the evidence chain.</p></div>
+      <div class="tile line"><p class="k">03 · Decide</p><p>Affected orders, options side by side, then approve, modify or reject.</p></div>
+      <div class="tile line"><p class="k">04–07 · Track &amp; report</p><p>Actions, supplier reliability, resolved history and KPI reports.</p></div>
+    </div>
+    <p class="sub-h">Colour means risk, nothing else</p>
+    <div class="grid4" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+      <div class="rk" style="background:#C8331E">#C8331E<b>Critical</b></div>
+      <div class="rk" style="background:#C9661A">#C9661A<b>High</b></div>
+      <div class="rk" style="background:#9C7400">#9C7400<b>Watch</b></div>
+      <div class="rk" style="background:#2F7A4B">#2F7A4B<b>Stable</b></div>
+      <div class="rk" style="background:#FFD966;color:#1A1412">#FFD966<b>Actions &amp; AI</b></div>
+    </div>
+    <p class="cap">Screens use sample data.</p>
+  </section>
+
+  <!-- 06 -->
+  <section class="panel" data-step="6" aria-label="Step 6: Test and outcome">
+    <div class="ph"><span class="n">06 / 06</span><h2>Removing decisions is <em>the design</em>.</h2></div>
+    <div class="grid4">
+      <div class="stat"><b>11→1</b><span>manual steps become one loop</span></div>
+      <div class="stat"><b>7</b><span>connected screens, overview to reports</span></div>
+      <div class="stat"><b>5</b><span>academic sources behind the decisions</span></div>
+      <div class="stat"><b>100%</b><span>of AI actions need human approval</span></div>
+    </div>
+<p class="sub-h">Iteration · my first version → refined version</p><div class="bafter"><figure><span class="lbl">V1 · my first Figma screens</span><button class="zoom" type="button"><img src="images/mrc/v1-sku.jpg" alt="Version 1 SKU detail screen" loading="lazy"></button></figure><figure><span class="lbl">V2 · refined</span><button class="zoom" type="button"><img src="images/mrc/v2-3-sku.jpg" alt="Version 2 SKU detail screen" loading="lazy"></button></figure></div>
+<ul class="changes" style="list-style:none;padding:0;margin:14px 0 0"><li style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px"><span class="muted">SKU page stopped at "why it's risky"</span><span><b>Added</b> affected orders and the decision (approve, modify or reject)</span></li><li style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px"><span class="muted">Purple used for links, AI and approvals</span><span><b>One accent</b> for actions; colour only means risk</span></li><li style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:15px"><span class="muted">"Material Risks" in the menu had no page</span><span><b>Designed the list</b>, so every menu item works</span></li></ul>
+<p class="sub-h">Usability test plan <span class="status">Planned</span></p><div class="tplan"><div><h5>Tasks</h5><ol><li>Find the riskiest material and explain why it's at risk.</li><li>Find which production orders it affects.</li><li>Choose and approve an action.</li></ol></div><div><h5>What I'll measure</h5><ul><li>Time to decision vs a spreadsheet</li><li>Correct decision rate</li><li>Trust in the AI suggestion (1–5)</li><li>SUS ease-of-use score</li></ul></div><div><h5>Who &amp; how</h5><p>5 participants with operations or supply-chain background (or classmates as stand-ins), same task with a spreadsheet and with my prototype.</p><p class="cap" style="margin-top:10px">Goal: check that managers decide faster and trust the AI's reasons.</p></div></div>
+    <p class="sub-h">How I'd measure success after launch</p>
+    <div class="grid3">
+      <div class="tile"><p class="k">Business KPI</p><h4>Fewer stoppages</h4><p>Shortage-related production stops go down.</p></div>
+      <div class="tile"><p class="k">UX KPI</p><h4>Time-to-decision</h4><p>From opening the tool to choosing an action.</p></div>
+      <div class="tile"><p class="k">Trust</p><h4>Accept rate</h4><p>AI suggestions accepted, modified or rejected.</p></div>
+    </div>
+    <div class="grid3" style="margin-top:14px">
+      <div class="tile line"><p class="k">What I learned</p><p>Good UX in complex tools removes the decisions a user shouldn't have to make.</p></div>
+      <div class="tile line"><p class="k">The psychology</p><p>Under pressure people can't juggle many signals. One ranked, explained risk lowers cognitive load.</p></div>
+      <div class="tile line"><p class="k">What makes it different</p><div class="chips" style="margin-top:4px"><span class="chip hot">Decision, not dashboard</span><span class="chip hot">Explainable AI</span><span class="chip hot">Human-in-the-loop</span><span class="chip hot">Evidence-based</span></div></div>
+    </div>
+  </section>
+
+  </div>
+</main>
+
+<section class="files-end" aria-label="Project files"><div class="wrap"><div><p class="eyebrow" style="color:var(--acc);margin:0 0 10px">Project files</p><h2>Material Risk Control, in full.</h2><p>Figma file, research board and resume, ready to share.</p></div><div class="pfiles"><a class="fig" href="https://www.figma.com/design/S78MfCis4Sqc5ntNYsYcMW/Portfolio" target="_blank" rel="noopener">Open Figma file ↗</a><a href="https://www.figma.com/design/GYE5tqETAqNNQQUM5U2EmR/Industry-specigic-ux" target="_blank" rel="noopener">Original screens (Figma) ↗</a><a href="figma-source/mrc/research.html" target="_blank" rel="noopener">Research board ↗</a><a href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a><a href="mailto:adya1023@gmail.com">Email me</a></div></div></section>
+
+<footer class="foot"><div class="wrap"><span>© 2026 Adya</span><a class="br" href="index.html#home"><span class="b">[</span>Home<span class="b">]</span></a></div></footer>
+<script src="assets/case.js"></script>
+</body>
+</html>
