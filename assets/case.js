@@ -142,7 +142,8 @@
   });
 
   /* ---------- hover (or tap) a phone/browser to scroll its full screen, slowly ---------- */
-  document.querySelectorAll('[data-scroll]').forEach(im => {
+  const touchOnly = matchMedia('(hover: none)').matches;
+  if (!touchOnly) document.querySelectorAll('[data-scroll]').forEach(im => {
     const box = im.parentNode;
     const host = box.closest('.phone, .browser') || box;
     let on = false;
