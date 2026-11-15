@@ -220,6 +220,15 @@ a{color:inherit}
   .name .l{transform:none;opacity:1}
   .rv{opacity:1;transform:none}
 }
+
+/* touch devices: flat rendering (iOS Safari mis-paints images inside 3D-transformed, clipped layers) */
+@media (hover:none),(max-width:900px){
+  .stage,.photo{perspective:none}
+  .dev{transform-style:flat;transform:none!important;transition:none}
+  .photo .ph{transform:none!important}
+  .photo .ph img{filter:none}
+  .rv,.js .rv{transform:none!important}
+}
 </style>
 <script>document.documentElement.classList.add("js")</script>
 </head>

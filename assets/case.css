@@ -385,3 +385,8 @@ html:not(.js) .stepper-wrap{position:static}
   .tile,.stat,.mc,.idea,.method,.pcard,.tplan>div{min-width:0;overflow-wrap:anywhere}
   .lane .phone.sm{width:150px}
 }
+@media (hover:none),(max-width:900px){
+  .hero-visual{perspective:none}
+  .laptop{transform:translateX(-50%)!important}
+  .zoom,.hov,.sw,.rule,.sticky{transform:none!important}
+}
